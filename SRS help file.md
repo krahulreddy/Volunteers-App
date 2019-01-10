@@ -11,4 +11,7 @@ These are some points we found useful to add:
 
 #cancel volunteer request: this will be reflected in hists 
 
-                    
+#cancel event: all approved volunteers will be notified and event will be removed from'my events' tab
+
+
+           

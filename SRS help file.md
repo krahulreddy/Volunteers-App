@@ -5,8 +5,10 @@ These are some points we found useful to add:
 
 #host an event: mention all the fields in the form to be filled
 
-#close entries: he can reopen entries if he wishes, (button) to opt open or close entries
+#my events tab: describe its contents. event description button.
 
-#cancel volunteer request: 
+#close entries: he can reopen entries if he wishes, (button) to opt open or close entries. describe about waiting list of volunteers as mentioned by sir.
+
+#cancel volunteer request: this will be reflected in hists 
 
                     

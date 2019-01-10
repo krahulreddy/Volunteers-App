@@ -9,7 +9,7 @@ These are some points we found useful to add:
 
 #close entries: he can reopen entries if he wishes, (button) to opt open or close entries. describe about waiting list of volunteers as mentioned by sir.
 
-#cancel volunteer request: this will be reflected in hists 
+#cancel volunteer request: this will be reflected in lists 
 
 #cancel event: all approved volunteers will be notified and event will be removed from'my events' tab
 

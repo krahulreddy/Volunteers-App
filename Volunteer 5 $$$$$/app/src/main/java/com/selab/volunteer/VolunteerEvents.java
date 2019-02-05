@@ -154,7 +154,7 @@ public class VolunteerEvents extends AppCompatActivity {
                 public void onClick(View v) {
                     TextView txt_name = finalConvertView.findViewById(R.id.textView_name);
                     TextView txt_location = finalConvertView.findViewById(R.id.textView_location);
-                    TextView txt_date = finalConvertView.findViewById(R.id.date);
+                    TextView txt_date = finalConvertView.findViewById(R.id.textView_date);
 
 
                     Intent intent = new Intent(VolunteerEvents.this,EventDescription1.class);

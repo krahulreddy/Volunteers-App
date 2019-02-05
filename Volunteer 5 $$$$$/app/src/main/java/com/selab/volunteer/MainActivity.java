@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
             break;
             case R.id.nav_feedback:
-                Toast.makeText(this, "Feedback", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Feedback", Toast.LENGTH_SHORT).show();
                Intent feedback = new Intent(MainActivity.this,feedbacktab.class);
                startActivity(feedback);
                 break;

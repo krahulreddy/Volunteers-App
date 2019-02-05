@@ -25,8 +25,9 @@ public class HostAnEvent extends AppCompatActivity {
     private Button nextbutton = null;
     private Button GoToCalender=null;
     private Button cancelhost;
+    EventOneSchema eventOneSchema,formax;
 
-    long max;
+    long maxid = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,13 +130,16 @@ public class HostAnEvent extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Event information saved!",Toast.LENGTH_LONG).show();
                     //Database starts herer
 
-                    EventOneSchema eventOneSchema = new EventOneSchema(eventname,eventdate,eventlocation,eventdesc, Integer.parseInt(eventpay));
+                    final EventOneSchema eventOneSchema = new EventOneSchema(eventname,eventdate,eventlocation,eventdesc, Integer.parseInt(eventpay));
 
                     databaseEvents = FirebaseDatabase.getInstance().getReference().child("HostedEvents");
                     databaseEvents.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            max = dataSnapshot.getChildrenCount();
+                            if(dataSnapshot.exists())
+                                maxid = (dataSnapshot.getChildrenCount());
+
+
                         }
 
                         @Override
@@ -144,8 +148,10 @@ public class HostAnEvent extends AppCompatActivity {
                         }
                     });
 
-                    databaseEvents.child(String.valueOf(max+1)).setValue(eventOneSchema);
+                    databaseEvents.child(String.valueOf(maxid + 1)).setValue(eventOneSchema);
 
+
+                  //  Toast.makeText(HostAnEvent.this, "" + formax.getMaxid()   , Toast.LENGTH_SHORT).show();
 
                     Intent i = new Intent(view.getContext(), HostFinal.class);
                     startActivity(i);

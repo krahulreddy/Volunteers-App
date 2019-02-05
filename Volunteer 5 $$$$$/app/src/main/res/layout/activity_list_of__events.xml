@@ -20,7 +20,7 @@
         android:layout_marginRight="10dp"
         android:fontFamily="@font/koho_bold"
         android:textStyle="bold"
-        android:textColor="#00FF00"
+        android:textColor="@color/blue500"
         android:gravity="center"
         android:text="@string/list_of_events"
         android:textSize="30sp" />

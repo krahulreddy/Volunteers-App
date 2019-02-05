@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:openDrawer="start">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue700"
+        android:elevation="4dp"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/AlertDialog.AppCompat.Light"
+
+     />
+
+    <Space xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="30sp"
+        android:layout_width="match_parent"
+       ></Space>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="2">
+
+    <Button
+        android:id="@+id/button_approved"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/approved"
+        android:clickable="true"
+        android:background="@drawable/round_button"
+        android:layout_gravity="left"/>
+
+    <Button
+        android:id="@+id/button_waitlisted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/waitlisted"
+        android:layout_gravity="right"
+        android:clickable="true"
+        android:background="@drawable/round_button"/>
+
+    </LinearLayout>
+
+    <Space xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="30sp"
+        android:layout_width="match_parent" ></Space>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listView">
+
+
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>

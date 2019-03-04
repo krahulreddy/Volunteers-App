@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2196f3</color>
+    <color name="colorPrimaryDark">#0E4BAF</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="black">#000000</color>
+    <color  name="colorAccentDark">#ffffff</color>
+    <color name="buttonColor">#64B5F6</color>
+
+    <color name="blue300">#64B5F6</color>
+    <color name="blue500">#2196f3</color>
+    <color name="blue700">#1976D2</color>
+    <color name="blue800">#0E4BAF</color>
+    <color name="blueHigh">#104496</color>
+    <color name="black85">#65000000</color>
+</resources>

@@ -5,10 +5,15 @@
     android:weightSum="2"
     android:orientation="vertical">
 
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+
     <Button
         android:id="@+id/hostedEvents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="264dp"
+        android:layout_height="16dp"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@color/blue300"
@@ -19,14 +24,18 @@
 
     <Button
         android:id="@+id/requestedEvents"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Requested \n Events"
-        android:layout_weight="1"
+        android:layout_width="276dp"
+        android:layout_height="14dp"
         android:layout_gravity="center"
+        android:layout_weight="1"
+
         android:gravity="center"
+        android:text="Requested Events"
         android:textSize="40sp"
 
-       />
+        />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
 
 </LinearLayout>

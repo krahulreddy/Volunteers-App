@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Waitlisted extends AppCompatActivity {
+public class Approved extends AppCompatActivity {
 
     public String[] name = new String[100];
 
@@ -30,6 +30,7 @@ public class Waitlisted extends AppCompatActivity {
 
     public String[] description = new String[100];
 
+
     DatabaseReference databaseEvents;
     int i;
     long j;
@@ -38,7 +39,7 @@ public class Waitlisted extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.waitlisted);
+        setContentView(R.layout.approved);
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,8 +53,8 @@ public class Waitlisted extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(i = 0; i< dataSnapshot.getChildrenCount(); i++) {
-                    Boolean app = dataSnapshot.child(String.valueOf(i)).child("approved").getValue(Boolean.class);
-                    if( !app ) {
+                        Boolean app = dataSnapshot.child(String.valueOf(i)).child("approved").getValue(Boolean.class);
+                    if( app ) {
                         name[(int)j] = dataSnapshot.child(String.valueOf(i)).child("name").getValue().toString();
                         location[(int)j] = dataSnapshot.child(String.valueOf(i)).child("location").getValue().toString();
                         date[(int)j] = dataSnapshot.child(String.valueOf(i)).child("date").getValue().toString();
@@ -64,7 +65,7 @@ public class Waitlisted extends AppCompatActivity {
                 }
 
                 final ListView listView = (ListView) findViewById(R.id.listView);
-                Waitlisted.CustomAdapter customAdapter = new Waitlisted.CustomAdapter(name,location,date,approved,description);
+                Approved.CustomAdapter customAdapter = new Approved.CustomAdapter(name,location,date,approved,description);
                 listView.setAdapter(customAdapter);
             }
 
@@ -74,13 +75,12 @@ public class Waitlisted extends AppCompatActivity {
             }
         });
 
-        button_a.setOnClickListener(new View.OnClickListener() {
+        button_w.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Waitlisted.this,Approved.class);
+                Intent intent = new Intent(Approved.this,Waitlisted.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-
             }
         });
 
@@ -120,9 +120,9 @@ public class Waitlisted extends AppCompatActivity {
         public View getView(final int position, View convertView, ViewGroup parent) {
             convertView = getLayoutInflater().inflate(R.layout.customlayout, null);
 
-            TextView textView_name = (TextView)convertView.findViewById(R.id.textView_name);
-            TextView textView_location = (TextView)convertView.findViewById(R.id.textView_location);
-            TextView textView_date = (TextView)convertView.findViewById(R.id.textView_date);
+            TextView textView_name = (TextView)convertView.findViewById(R.id.textView_eventName);
+            TextView textView_location = (TextView)convertView.findViewById(R.id.textView_eventLocation);
+            TextView textView_date = (TextView)convertView.findViewById(R.id.textView_eventDate);
 
             textView_name.setText(name[position]);
             textView_location.setText(location[position]);
@@ -132,19 +132,18 @@ public class Waitlisted extends AppCompatActivity {
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TextView txt_name = finalConvertView.findViewById(R.id.textView_name);
-                    TextView txt_location = finalConvertView.findViewById(R.id.textView_location);
-                    TextView txt_date = finalConvertView.findViewById(R.id.textView_date);
+                    TextView txt_name = finalConvertView.findViewById(R.id.textView_eventName);
+                    TextView txt_location = finalConvertView.findViewById(R.id.textView_eventLocation);
+                    TextView txt_date = finalConvertView.findViewById(R.id.textView_eventDate);
 
 
-                    Intent intent = new Intent(Waitlisted.this,EventDescription.class);
+                    Intent intent = new Intent(Approved.this,EventDescription.class);
 
                     intent.putExtra("EventName",txt_name.getText().toString());
                     intent.putExtra("Location", txt_location.getText().toString());
                     intent.putExtra("Date", txt_date.getText().toString());
                     intent.putExtra("Approved", approved[position]);
                     intent.putExtra("Description", description[position]);
-
 
                     startActivity(intent);
                 }
@@ -153,5 +152,6 @@ public class Waitlisted extends AppCompatActivity {
             return finalConvertView;
         }
     }
+
 
 }

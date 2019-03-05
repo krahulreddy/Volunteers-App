@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HostAnEvent extends AppCompatActivity {
 
+    FirebaseAuth mAuth;
     DatabaseReference databaseEvents;
+
 
     EditText EventName,EventDesc,EventTimeHours,EventTimeMinutes,EventPay,EventLocation;
     TextView EventDate;
@@ -44,6 +47,7 @@ public class HostAnEvent extends AppCompatActivity {
         GoToCalender=(Button)findViewById(R.id.GoToCalender);
         cancelhost = findViewById(R.id.CancelHost);
 
+        mAuth = FirebaseAuth.getInstance();
 
 
         Intent incoming = getIntent();
@@ -132,23 +136,12 @@ public class HostAnEvent extends AppCompatActivity {
 
                     final EventOneSchema eventOneSchema = new EventOneSchema(eventname,eventdate,eventlocation,eventdesc, Integer.parseInt(eventpay));
 
-                    databaseEvents = FirebaseDatabase.getInstance().getReference().child("HostedEvents");
-                    databaseEvents.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists())
-                                maxid = (dataSnapshot.getChildrenCount());
 
 
-                        }
+                    databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid());
+                    String eventId = databaseEvents.push().getKey();
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    databaseEvents.child(String.valueOf(maxid + 1)).setValue(eventOneSchema);
+                    databaseEvents.child(eventId).setValue(eventOneSchema);
 
 
                   //  Toast.makeText(HostAnEvent.this, "" + formax.getMaxid()   , Toast.LENGTH_SHORT).show();

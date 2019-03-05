@@ -108,4 +108,17 @@
         android:ems="10"
         android:textSize="18sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Requests to join"
+        android:textSize="23sp"
+        android:gravity="center"/>
+
+    <ListView
+        android:id="@+id/listview_reqVol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

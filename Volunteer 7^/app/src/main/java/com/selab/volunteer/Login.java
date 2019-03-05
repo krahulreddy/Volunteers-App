@@ -70,8 +70,10 @@ public class Login extends AppCompatActivity {
                                 }
                                 else {
                                     Intent intent = new Intent(Login.this, MainActivity.class);
+                                    Toast.makeText(Login.this, mAuth.getUid(), Toast.LENGTH_SHORT).show();
+                                    //intent.putExtra("CurrentUserId", mAuth.getUid() );
                                     startActivity(intent);
-                                    Toast.makeText(getApplicationContext(), "Login Successful!!", Toast.LENGTH_LONG).show();
+                                    //Toast.makeText(getApplicationContext(), "Login Successful!!", Toast.LENGTH_LONG).show();
                                 }
                             }
                             else

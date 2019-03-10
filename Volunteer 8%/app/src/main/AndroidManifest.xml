@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.selab.volunteer">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".MyEvents"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".Report"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".Login"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
+            android:label="Volunteers">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ForgotPassword"
+            android:label="@string/ResetPassword"
+            android:noHistory="true"
+            android:parentActivityName=".Login" />
+
+        <activity
+            android:name=".SignUp"
+            android:label="@string/SignUp"
+            android:noHistory="true"
+            android:parentActivityName=".Login" />
+
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".Login"/>
+        <activity
+            android:name=".feedbacktab"
+            android:label="Feedback"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".Settings"
+            android:parentActivityName=".Profile"/>
+
+        <activity android:name=".VolunteerEvents"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".EventDescription2"
+            android:parentActivityName=".VolunteerEvents"> </activity>
+        <activity
+            android:name=".EventDescription1"
+            android:parentActivityName=".List_of_Events" />
+        <activity
+            android:name=".Approved"
+            android:parentActivityName=".MyEvents" />
+        <activity
+            android:name=".Waitlisted"
+            android:parentActivityName=".MyEvents" />
+        <activity android:name=".List_of_Events"
+            android:parentActivityName=".MyEvents"/>
+        <activity android:name=".HostFinal"  android:parentActivityName=".MainActivity"
+            android:noHistory="true"/>
+        <activity android:name=".CalenderActivity" android:parentActivityName=".HostAnEvent" android:noHistory="true"/>
+        <activity android:name=".HostAnEvent" android:parentActivityName=".MainActivity" android:noHistory="true"/>
+
+        <activity android:name=".Transact"
+            android:parentActivityName=".Wallet"></activity>
+        <activity android:name=".Wallet"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".Profile"
+            android:parentActivityName=".MainActivity"></activity>
+
+    </application>
+
+</manifest>

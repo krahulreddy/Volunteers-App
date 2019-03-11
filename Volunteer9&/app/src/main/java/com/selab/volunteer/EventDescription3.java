@@ -3,8 +3,10 @@ package com.selab.volunteer;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -13,10 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class EventDescription1 extends AppCompatActivity {
+public class EventDescription3 extends AppCompatActivity {
 
     TextView textView0;
     TextView Text1;
@@ -25,23 +24,28 @@ public class EventDescription1 extends AppCompatActivity {
     TextView Text4;
 
     FirebaseAuth mAuth;
-    static DatabaseReference databaseReference;
-    ListView listViewReqVol;
-    List <String> reqVol;
+    DatabaseReference databaseReference;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.eventdescription1);
+        setContentView(R.layout.eventdescription2);
 
         mAuth = FirebaseAuth.getInstance();
 
 
         final String str = getIntent().getStringExtra("EventId");
-        listViewReqVol = findViewById(R.id.listview_reqVol);
-        reqVol = new ArrayList<>();
+        Toast.makeText(this, "" + str, Toast.LENGTH_SHORT).show();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid() + "/" + str);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + Waitlisted.tempMap.get(str) + "/" + str);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -67,38 +71,12 @@ public class EventDescription1 extends AppCompatActivity {
 
             }
         });
-
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        DatabaseReference requestedReference = databaseReference.child("unApprovedId");
 
 
-        requestedReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                reqVol.clear();
-
-                for( DataSnapshot reqIdSnapshot: dataSnapshot.getChildren()) {
-                  reqVol.add(reqIdSnapshot.getValue().toString());
 
 
-                }
 
-                RequestedVolunteersList adapter = new RequestedVolunteersList(EventDescription1.this , reqVol);
-                listViewReqVol.setAdapter(adapter);
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
-
-}

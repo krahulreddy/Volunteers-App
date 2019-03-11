@@ -43,7 +43,7 @@ public class EventList3 extends ArrayAdapter<EventOneSchema> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EventDescription3.class);
-                intent.putExtra("EventId", VolunteerEvents.eventMap.get(eventOneSchema) );
+                intent.putExtra("EventId", Waitlisted.eventMap.get(eventOneSchema) );
 
                 context.startActivity(intent);
             }

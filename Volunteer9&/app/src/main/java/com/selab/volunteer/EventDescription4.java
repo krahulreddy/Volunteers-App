@@ -25,7 +25,6 @@ public class EventDescription4 extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     DatabaseReference databaseReference;
-    int check = 0;
 
 
     @Override
@@ -36,10 +35,10 @@ public class EventDescription4 extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        final String str = getIntent().getStringExtra("EventId");
+        String str = getIntent().getStringExtra("EventId");
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + VolunteerEvents.tempMap.get(str) + "/" + str);
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + Approved.tempMap.get(str) + "/" + str);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -66,10 +65,8 @@ public class EventDescription4 extends AppCompatActivity {
             }
         });
 
+    }
 
 
 
-
-
-
-    }}
+    }

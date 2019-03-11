@@ -39,11 +39,13 @@ public class EventList4 extends ArrayAdapter<EventOneSchema> {
         textView_eventDate.setText(eventOneSchema.date);
         textView_eventLocation.setText(eventOneSchema.location);
 
+
+
         listViewItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EventDescription4.class);
-                intent.putExtra("EventId", VolunteerEvents.eventMap.get(eventOneSchema) );
+                intent.putExtra("EventId", Approved.eventMap.get(eventOneSchema) );
 
                 context.startActivity(intent);
             }

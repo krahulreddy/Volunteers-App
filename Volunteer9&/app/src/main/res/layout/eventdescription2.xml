@@ -110,6 +110,14 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="100dp" />
-
+    <Button
+        android:id="@+id/Register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:text="Register"
+        android:background="@drawable/round_button"
+        />
 
 </LinearLayout>

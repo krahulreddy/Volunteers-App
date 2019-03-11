@@ -32,6 +32,8 @@ public class VolunteerEvents extends AppCompatActivity {
 
     ListView listViewVolunteerEvents;
 
+    static int closeEntries;
+
     public static HashMap<EventOneSchema , String> eventMap;
     public static HashMap<String, String> tempMap;
 

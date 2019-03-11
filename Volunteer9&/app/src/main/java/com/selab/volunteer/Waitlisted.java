@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -23,22 +24,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Approved extends AppCompatActivity {
+public class Waitlisted extends AppCompatActivity {
 
     DatabaseReference databaseEvents;
-    DatabaseReference approvedReff;
     FirebaseAuth mAuth;
-    DataSnapshot eventsnapshot;
+
+    int i;
 
     Button button_a,button_w;
-    ListView listViewApprovedEvents;
+    ListView listViewUnApprovedEvents;
 
     public static HashMap<EventOneSchema , String> eventMap;
     public static HashMap<String, String> tempMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.approved);
+        setContentView(R.layout.waitlisted);
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,18 +50,18 @@ public class Approved extends AppCompatActivity {
         databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events");
         mAuth = FirebaseAuth.getInstance();
 
-        listViewApprovedEvents = (ListView) findViewById(R.id.listView_Approved);
+        listViewUnApprovedEvents = (ListView) findViewById(R.id.listView_UnApproved);
         eventMap = new HashMap<>();
         tempMap = new HashMap<>();
 
 
-
-        button_w.setOnClickListener(new View.OnClickListener() {
+        button_a.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Approved.this,Waitlisted.class);
+                Intent intent = new Intent(Waitlisted.this,Approved.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+
             }
         });
 
@@ -77,31 +78,21 @@ public class Approved extends AppCompatActivity {
                 eventMap.clear();
                 tempMap.clear();
 
-                for( final DataSnapshot hostsnapshot: dataSnapshot.getChildren() )
+                for( DataSnapshot hostsnapshot: dataSnapshot.getChildren() )
                 {
 
-                    for( final DataSnapshot eventsnapshot: hostsnapshot.getChildren())
+                    for( DataSnapshot eventsnapshot: hostsnapshot.getChildren())
                     {
-                        approvedReff = databaseEvents.child(hostsnapshot.getKey()).child(eventsnapshot.getKey()).child("approvedId");
-                        approvedReff.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot unApprovedSnapshot) {
-                                for (DataSnapshot childUn: unApprovedSnapshot.getChildren())
-                                {
-                                    if(childUn.getValue().toString().equalsIgnoreCase(mAuth.getUid()) )
-                                    {
-                                        EventOneSchema eventOneSchema = eventsnapshot.getValue(EventOneSchema.class);
-                                        tempMap.put(eventsnapshot.getKey(), hostsnapshot.getKey());
-                                        eventMap.put( eventOneSchema, eventsnapshot.getKey() );
-                                    }
-                                }
-                            }
 
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                        for( DataSnapshot childUn : eventsnapshot.child("unApprovedId").getChildren() )
+                        {
+                            if(childUn.getValue().toString().equals(mAuth.getUid()))
+                            {
+                                EventOneSchema eventOneSchema = eventsnapshot.getValue(EventOneSchema.class);
+                                tempMap.put(eventsnapshot.getKey(), hostsnapshot.getKey());
+                                eventMap.put( eventOneSchema, eventsnapshot.getKey() );
                             }
-                        });
+                        }
 
                     }
 
@@ -109,8 +100,8 @@ public class Approved extends AppCompatActivity {
 
                 List<EventOneSchema> eventList = new ArrayList(eventMap.keySet());
 
-                EventList4 adapter = new EventList4(Approved.this , eventList);
-                listViewApprovedEvents.setAdapter(adapter);
+                EventList3 adapter = new EventList3(Waitlisted.this , eventList);
+                listViewUnApprovedEvents.setAdapter(adapter);
 
             }
 
@@ -120,7 +111,6 @@ public class Approved extends AppCompatActivity {
             }
         });
     }
-
 
 
 

@@ -23,25 +23,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Waitlisted extends AppCompatActivity {
+public class Approved extends AppCompatActivity {
 
     DatabaseReference databaseEvents;
-    DatabaseReference unApprovedReff;
     FirebaseAuth mAuth;
 
-    int i;
 
     Button button_a,button_w;
-    ListView listViewUnApprovedEvents;
-
-    public List<String> UnapprovedIdList = new ArrayList<>();
+    ListView listViewApprovedEvents;
 
     public static HashMap<EventOneSchema , String> eventMap;
     public static HashMap<String, String> tempMap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.waitlisted);
+        setContentView(R.layout.approved);
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -52,19 +48,18 @@ public class Waitlisted extends AppCompatActivity {
         databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events");
         mAuth = FirebaseAuth.getInstance();
 
-        listViewUnApprovedEvents = (ListView) findViewById(R.id.listView_UnApproved);
+        listViewApprovedEvents = (ListView) findViewById(R.id.listView_Approved);
         eventMap = new HashMap<>();
         tempMap = new HashMap<>();
 
 
 
-        button_a.setOnClickListener(new View.OnClickListener() {
+        button_w.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Waitlisted.this,Approved.class);
+                Intent intent = new Intent(Approved.this,Waitlisted.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-
             }
         });
 
@@ -83,49 +78,24 @@ public class Waitlisted extends AppCompatActivity {
 
                 for( DataSnapshot hostsnapshot: dataSnapshot.getChildren() )
                 {
-
                     for( DataSnapshot eventsnapshot: hostsnapshot.getChildren())
                     {
-                        UnapprovedIdList.clear();
-
-                        unApprovedReff = FirebaseDatabase.getInstance().getReference().child("Events").child(hostsnapshot.getKey()).child(eventsnapshot.getKey()).child("unApprovedId");
-                        unApprovedReff.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot unApprovedSnapshot) {
-                                for (DataSnapshot childUn : unApprovedSnapshot.getChildren())
-                                {
-                                   UnapprovedIdList.add(childUn.getValue().toString());
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-
-                        for( i = 0; i<UnapprovedIdList.size(); i++)
+                        for(DataSnapshot childUn : eventsnapshot.child("approvedId").getChildren())
                         {
-                          if(UnapprovedIdList.get(i).equals(mAuth.getUid()))
-                              break;
+                            if(childUn.getValue().toString().equals(mAuth.getUid()))
+                            {
+                                EventOneSchema eventOneSchema = eventsnapshot.getValue(EventOneSchema.class);
+                                tempMap.put(eventsnapshot.getKey(), hostsnapshot.getKey());
+                                eventMap.put( eventOneSchema, eventsnapshot.getKey() );
+                            }
                         }
-
-                        if(i != UnapprovedIdList.size())
-                        {
-                            EventOneSchema eventOneSchema = eventsnapshot.getValue(EventOneSchema.class);
-                            tempMap.put(eventsnapshot.getKey(), hostsnapshot.getKey());
-                            eventMap.put( eventOneSchema, eventsnapshot.getKey() );
-                        }
-
-
                     }
-
                 }
 
                 List<EventOneSchema> eventList = new ArrayList(eventMap.keySet());
 
-                EventList3 adapter = new EventList3(Waitlisted.this , eventList);
-                listViewUnApprovedEvents.setAdapter(adapter);
+                EventList4 adapter = new EventList4(Approved.this , eventList);
+                listViewApprovedEvents.setAdapter(adapter);
 
             }
 
@@ -135,6 +105,7 @@ public class Waitlisted extends AppCompatActivity {
             }
         });
     }
+
 
 
 

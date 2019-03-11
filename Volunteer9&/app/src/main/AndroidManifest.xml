@@ -10,12 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MyEvents"
-            android:parentActivityName=".MainActivity"/>
-
-        <activity android:name=".Report"
-            android:parentActivityName=".MainActivity"/>
-
         <activity android:name=".Login"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustResize"
@@ -28,14 +22,14 @@
         </activity>
 
         <activity
-            android:name=".ForgotPassword"
-            android:label="@string/ResetPassword"
+            android:name=".SignUp"
+            android:label="@string/SignUp"
             android:noHistory="true"
             android:parentActivityName=".Login" />
 
         <activity
-            android:name=".SignUp"
-            android:label="@string/SignUp"
+            android:name=".ForgotPassword"
+            android:label="@string/ResetPassword"
             android:noHistory="true"
             android:parentActivityName=".Login" />
 
@@ -43,37 +37,62 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".Login"/>
-        <activity
-            android:name=".feedbacktab"
-            android:label="Feedback"
-            android:parentActivityName=".MainActivity" />
-        <activity android:name=".Settings"
-            android:parentActivityName=".Profile"/>
+
+        <activity android:name=".MyEvents"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity android:name=".List_of_Events"
+            android:parentActivityName=".MyEvents"/>
+
+        <activity android:name=".HostFinal"  android:parentActivityName=".MainActivity"
+            android:noHistory="true"/>
 
         <activity android:name=".VolunteerEvents"
             android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".EventDescription2"
-            android:parentActivityName=".VolunteerEvents"> </activity>
+
+        <activity
+            android:name=".Waitlisted"
+            android:parentActivityName=".MyEvents" />
+
+        <activity
+            android:name=".Approved"
+            android:parentActivityName=".MyEvents" />
+
         <activity
             android:name=".EventDescription1"
             android:parentActivityName=".List_of_Events" />
         <activity
-            android:name=".Approved"
-            android:parentActivityName=".MyEvents" />
+            android:name=".EventDescription2"
+            android:parentActivityName=".VolunteerEvents" />
         <activity
-            android:name=".Waitlisted"
-            android:parentActivityName=".MyEvents" />
-        <activity android:name=".List_of_Events"
-            android:parentActivityName=".MyEvents"/>
-        <activity android:name=".HostFinal"  android:parentActivityName=".MainActivity"
-            android:noHistory="true"/>
+            android:name=".EventDescription3"
+            android:parentActivityName=".Waitlisted" />
+        <activity
+            android:name=".EventDescription4"
+            android:parentActivityName=".Approved" />
+
+
+        <activity android:name=".Report"
+            android:parentActivityName=".MainActivity"/>
+
+        <activity
+            android:name=".feedbacktab"
+            android:label="Feedback"
+            android:parentActivityName=".MainActivity" />
+
+        <activity android:name=".Settings"
+            android:parentActivityName=".Profile"/>
+
         <activity android:name=".CalenderActivity" android:parentActivityName=".HostAnEvent" android:noHistory="true"/>
+
         <activity android:name=".HostAnEvent" android:parentActivityName=".MainActivity" android:noHistory="true"/>
 
         <activity android:name=".Transact"
             android:parentActivityName=".Wallet"></activity>
+
         <activity android:name=".Wallet"
             android:parentActivityName=".MainActivity"></activity>
+
         <activity android:name=".Profile"
             android:parentActivityName=".MainActivity"></activity>
 

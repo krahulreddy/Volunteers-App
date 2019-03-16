@@ -111,7 +111,13 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="35dp" />
-<LinearLayout
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CHATBOX"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/Button_chatbox"/>
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:weightSum="2">
@@ -148,5 +154,6 @@
         android:id="@+id/listview_reqVol"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 
 </LinearLayout>

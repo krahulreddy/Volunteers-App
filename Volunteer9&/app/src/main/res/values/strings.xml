@@ -28,7 +28,8 @@
     <string name="reportemail">Email</string>
     <string name="reportevent">Event he/she in</string>
     <string name="reportreason">Reason</string>
-
+    <string name="sign_out">Sign Out</string>
+    <string name="send_button_label">Send</string>
     <string name="feedback">FeedBack</string>
     <string name="feedbackname">Name</string>
     <string name="feedbackemail">Email</string>

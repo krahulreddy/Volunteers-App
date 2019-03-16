@@ -1,5 +1,6 @@
 package com.selab.volunteer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,9 +34,9 @@ public class EventDescription4 extends AppCompatActivity {
         setContentView(R.layout.eventdescription4);
 
         mAuth = FirebaseAuth.getInstance();
+        Button chatbox = findViewById(R.id.Button_chatbox);
 
-
-        String str = getIntent().getStringExtra("EventId");
+        final String str = getIntent().getStringExtra("EventId");
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + Approved.tempMap.get(str) + "/" + str);
@@ -62,6 +63,14 @@ public class EventDescription4 extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
+        chatbox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EventDescription4.this,Chatbox.class);
+                intent.putExtra("EventId", str);
+                startActivity(intent);
             }
         });
 

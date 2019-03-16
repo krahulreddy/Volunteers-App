@@ -51,4 +51,5 @@
         android:layout_toRightOf="@+id/textView_eventLocation"
         android:text="TextView"
         android:textSize="15sp" />
+
 </RelativeLayout>

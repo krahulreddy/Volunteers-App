@@ -57,6 +57,10 @@
         <activity
             android:name=".Approved"
             android:parentActivityName=".MyEvents" />
+        <activity
+            android:name=".Chatbox"
+            android:parentActivityName=".Approved" />
+
 
         <activity
             android:name=".EventDescription1"

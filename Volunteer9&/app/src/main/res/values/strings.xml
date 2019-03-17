@@ -36,6 +36,7 @@
     <string name="feedbacksubject">Subject</string>
     <string name="feedbacksuggestions">Suggestions</string>
     <string name="feedbacksubmit">Send Feedback</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
 
 

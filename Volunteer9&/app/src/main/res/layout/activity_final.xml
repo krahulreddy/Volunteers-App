@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FinalActivity">
+    tools:context=".HostFinal">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,28 +20,25 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="Successfully Hosted!"
-            android:textColor="@android:color/primary_text_light_nodisable"
+            android:gravity="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="30sp" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5sp"
-            android:gravity="center"
             android:text="Event added to hosted events"
-            android:textColor="@android:color/primary_text_light_nodisable"
+            android:gravity="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
             android:textSize="25sp" />
-
         <Button
-            android:id="@+id/goto_myevents"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:text="My events"
             android:layout_marginTop="5sp"
             android:padding="25sp"
-            android:text="My events"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
     </LinearLayout>
 </RelativeLayout>

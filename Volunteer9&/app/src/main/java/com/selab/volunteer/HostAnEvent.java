@@ -52,6 +52,7 @@ public class HostAnEvent extends AppCompatActivity {
         TimePicker HostAnEventTime=(TimePicker)findViewById(R.id.HostAnEventTime) ;
         EventPay=(EditText)findViewById(R.id.HostAnEventMoney);
         GoToCalender=(Button)findViewById(R.id.GoToCalender);
+        cancelhost=(Button)findViewById(R.id.CancelHost) ;
         Intent incoming = getIntent();
         final String date = incoming.getStringExtra("date");
         EventDate.setText(date);
@@ -142,7 +143,7 @@ public class HostAnEvent extends AppCompatActivity {
 
                   //  Toast.makeText(HostAnEvent.this, "" + formax.getMaxid()   , Toast.LENGTH_SHORT).show();
 
-                    Intent i = new Intent(view.getContext(), HostFinal.class);
+                    Intent i = new Intent(view.getContext(), MapsActivity.class);
                     startActivity(i);
                 }
             }

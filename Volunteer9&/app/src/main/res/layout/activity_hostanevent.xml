@@ -2,6 +2,7 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent">
     <LinearLayout
@@ -20,10 +21,11 @@
             android:layout_marginBottom="8dp"
             android:text="Event details"
             android:textAlignment="center"
-            android:textColor="@android:color/black"
+            android:textColor="#FFFFFF"
             android:textAllCaps="true"
             android:textSize="30sp"
-            app:fontFamily="sans-serif" />
+            android:background="@color/colorPrimary"
+            app:fontFamily="sans-serif-black" />
 
         <TextView
             android:id="@+id/textView4"
@@ -102,45 +104,24 @@
             android:ems="10"
             android:hint="Describe your event"
             android:inputType="textMultiLine" />
-
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
             android:text="Time:"
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
-        <LinearLayout
+
+        <TimePicker
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <EditText
-                android:id="@+id/HostAnEventTimeHours"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="HH"
-                android:layout_marginBottom="20dp"
-                android:inputType="number" />
-            <EditText
-                android:id="@+id/HostAnEventTimeMinutes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="MM"
-                android:layout_marginBottom="20dp"
-                android:inputType="number" />
-        </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Location:"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter the address"
-            android:id="@+id/HostAnEventLocation"/>
+            android:timePickerMode="spinner"
+            android:background="@color/colorPrimary"
+            android:headerBackground="@color/colorPrimary"
+            android:numbersTextColor="#FFFFFF"
+            android:id="@+id/HostAnEventTime">
+        </TimePicker>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

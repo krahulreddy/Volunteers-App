@@ -39,6 +39,7 @@
             android:layout_marginTop="5sp"
             android:padding="25sp"
             android:textSize="18sp"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:id="@+id/goto_myevents"/>
     </LinearLayout>
 </RelativeLayout>

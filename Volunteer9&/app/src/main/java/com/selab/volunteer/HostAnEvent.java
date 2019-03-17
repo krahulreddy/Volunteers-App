@@ -44,6 +44,7 @@ public class HostAnEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hostanevent);
         nextbutton = (Button) findViewById(R.id.NextStep);
         EventName=(EditText)findViewById(R.id.HostAnEventName);
         EventDate=(TextView) findViewById(R.id.HostAnEventDate);

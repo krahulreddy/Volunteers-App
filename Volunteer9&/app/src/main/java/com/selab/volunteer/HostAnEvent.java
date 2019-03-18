@@ -132,7 +132,7 @@ public class HostAnEvent extends AppCompatActivity {
                     //Database starts here
 
                     final EventOneSchema eventOneSchema = new EventOneSchema(eventname,date,eventlocation,eventdesc, Integer.parseInt(eventpay));
-
+                    eventOneSchema.closeEntries = false;
 
 
                     databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid());

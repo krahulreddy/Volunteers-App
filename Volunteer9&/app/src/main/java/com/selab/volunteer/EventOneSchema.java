@@ -12,6 +12,7 @@ public class EventOneSchema {
     public String location;
     public String description;
     public int  payment;
+    public boolean closeEntries;
   //  public ArrayList<String> ApprovedId = new ArrayList<>();
   //  public ArrayList<String> UnApprovedId = new ArrayList<>();
 

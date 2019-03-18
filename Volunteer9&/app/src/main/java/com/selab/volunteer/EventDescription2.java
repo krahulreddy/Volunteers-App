@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class EventDescription2 extends AppCompatActivity {
 
     TextView textView0;
@@ -31,6 +33,8 @@ public class EventDescription2 extends AppCompatActivity {
 
     static String str;
 
+    Button b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,14 +49,26 @@ public class EventDescription2 extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + VolunteerEvents.tempMap.get(str) + "/" + str);
 
         final Button b = findViewById(R.id.Register);
-        if(EventDescription2.closeEntries == 1)
-        {
-            b.setEnabled(false);
-        }
-        else
-        {
-            b.setEnabled(true);
-        }
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    if (Objects.requireNonNull(dataSnapshot.child("closeEntries").getValue()).toString().equals("true")) {
+                        b.setEnabled(false);
+                    } else {
+                        b.setEnabled(true);
+                    }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         DatabaseReference referUnApproved = databaseReference.child("unApprovedId");
         final String key = databaseReference.child("unApprovedId").push().getKey();
@@ -149,6 +165,8 @@ public class EventDescription2 extends AppCompatActivity {
 
                 Text4 = findViewById(R.id.des_description);
                 Text4.setText(dataSnapshot.child("description").getValue().toString());
+
+
             }
 
             @Override
@@ -156,7 +174,6 @@ public class EventDescription2 extends AppCompatActivity {
 
             }
         });
-
 
 
     }

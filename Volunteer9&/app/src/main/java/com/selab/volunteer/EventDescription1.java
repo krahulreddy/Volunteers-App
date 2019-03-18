@@ -41,7 +41,7 @@ public class EventDescription1 extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        str = getIntent().getStringExtra("EventId");
+        str = getIntent().getStringExtra("EventId");   //str is this event ID
         listViewReqVol = findViewById(R.id.listview_reqVol);
         reqVol = new ArrayList<>();
 
@@ -78,13 +78,13 @@ public class EventDescription1 extends AppCompatActivity {
         CloseEntriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventDescription2.closeEntries = 1;
+                databaseReference.child("closeEntries").setValue(true);
             }
         });
         OpenEntriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EventDescription2.closeEntries = 0;
+                databaseReference.child("closeEntries").setValue(false);
             }
         });
 

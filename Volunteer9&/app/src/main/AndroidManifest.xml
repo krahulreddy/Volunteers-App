@@ -59,7 +59,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MyEvents"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:noHistory="true"/>
         <activity
             android:name=".List_of_Events"
             android:parentActivityName=".MyEvents" />

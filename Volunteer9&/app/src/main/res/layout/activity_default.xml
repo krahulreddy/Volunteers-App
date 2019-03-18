@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/default_activity_background"
+        android:scaleType="centerCrop"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

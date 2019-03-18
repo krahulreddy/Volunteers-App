@@ -144,6 +144,7 @@ public class HostAnEvent extends AppCompatActivity {
                   //  Toast.makeText(HostAnEvent.this, "" + formax.getMaxid()   , Toast.LENGTH_SHORT).show();
 
                     Intent i = new Intent(view.getContext(), MapsActivity.class);
+                    i.putExtra("EventId", eventId);
                     startActivity(i);
                 }
             }

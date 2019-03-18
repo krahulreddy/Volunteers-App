@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccentDark"
+    android:background="@mipmap/login_page_background"
     tools:context=".Login">
 
 
@@ -37,20 +37,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:passwordToggleEnabled="true"
+                android:textColorHint="#FFFFFF"
                 app:passwordToggleTint="@color/black"
                 >
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/username"
+                    android:hint="Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:hint="Email Id"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#FFFFFF"
                     android:inputType="text"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:backgroundTint="@color/blue300"/>
+                    android:backgroundTint="#FFFFFF"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -58,17 +61,19 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColorHint="#FFFFFF"
                 app:passwordToggleEnabled="true"
-                app:passwordToggleTint="@color/black">
+                app:passwordToggleTint="#FFFFFF">
 
                 <android.support.design.widget.TextInputEditText
                     android:id="@+id/password"
+                    android:hint="Password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="20dp"
-                    android:hint="@string/Password"
+                    android:textColorHint="#FFFFFF"
                     android:inputType="textPassword"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:backgroundTint="@color/blue300"/>

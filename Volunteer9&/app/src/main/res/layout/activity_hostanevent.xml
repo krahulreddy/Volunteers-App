@@ -119,7 +119,6 @@
             android:timePickerMode="spinner"
             android:background="@color/colorPrimary"
             android:headerBackground="@color/colorPrimary"
-            android:numbersTextColor="#FFFFFF"
             android:id="@+id/HostAnEventTime">
         </TimePicker>
         <RelativeLayout

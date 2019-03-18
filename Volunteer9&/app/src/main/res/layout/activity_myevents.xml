@@ -4,38 +4,46 @@
     android:layout_height="match_parent"
     android:weightSum="2"
     android:orientation="vertical">
-
-
-    <Space
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@mipmap/hosted_events_background">
 
     <Button
         android:id="@+id/hostedEvents"
-        android:layout_width="264dp"
-        android:layout_height="16dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@color/blue300"
+        android:background="@android:color/transparent"
         android:gravity="center"
         android:text="Hosted Events"
-        android:textColor="#ffffff"
-        android:textSize="40sp" />
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="45sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@mipmap/events_background">
 
     <Button
         android:id="@+id/requestedEvents"
-        android:layout_width="276dp"
-        android:layout_height="14dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
-        android:text="Requested Events"
-        android:textSize="40sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:background="@android:color/transparent"
+        android:text="Req Events"
+        android:textSize="45sp"
 
         />
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="80dp" />
+    </RelativeLayout>
 
 </LinearLayout>

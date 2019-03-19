@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "79647855354-6dllmqoo1beqb6e9vbcnbsodkj7vkos5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selab.volunteer",
+            "certificate_hash": "871864ce570f680ae7480baf14dc2cad2420a45d"
+          }
+        },
+        {
           "client_id": "79647855354-4j876a5d5m0acmafsscii6u0r0qnhtbq.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -1,5 +1,6 @@
 package com.selab.volunteer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -72,8 +73,18 @@ public class EventDescription1 extends AppCompatActivity {
             }
         });
 
+        Button ChatBox = findViewById(R.id.Button_chatbox);
         Button CloseEntriesButton = findViewById(R.id.Button_closeEntries);
         Button OpenEntriesButton = findViewById(R.id.Button_openEntries);
+
+        ChatBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EventDescription1.this,Chatbox.class);
+                intent.putExtra("EventId", str);
+                startActivity(intent);
+            }
+        });
 
         CloseEntriesButton.setOnClickListener(new View.OnClickListener() {
             @Override

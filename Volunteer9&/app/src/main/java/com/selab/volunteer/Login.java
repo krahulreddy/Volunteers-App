@@ -1,8 +1,12 @@
 package com.selab.volunteer;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -37,6 +41,14 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {}
+            else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            }
+        }
+
         Toolbar toolbar= findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -47,6 +59,27 @@ public class Login extends AppCompatActivity {
 
         TextView signup = (TextView)findViewById(R.id.signup);
         mAuth = FirebaseAuth.getInstance();
+        if (mAuth.getCurrentUser() != null)
+        {
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            // Toast.makeText(Login.this, mAuth.getUid(), Toast.LENGTH_SHORT).show();
+            DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).child("name");
+
+            reff.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Toast.makeText(Login.this, ""+ dataSnapshot.getValue(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            //intent.putExtra("CurrentUserId", mAuth.getUid() );
+            startActivity(intent);
+            //Toast.makeText(getApplicationContext(), "Login Successful!!", Toast.LENGTH_LONG).show();
+        }
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

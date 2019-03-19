@@ -8,6 +8,8 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -59,8 +61,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MyEvents"
-            android:parentActivityName=".MainActivity"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".List_of_Events"
             android:parentActivityName=".MyEvents" />
@@ -92,6 +94,11 @@
         <activity
             android:name=".EventDescription4"
             android:parentActivityName=".Approved" />
+
+        <activity
+            android:name=".Gallery"
+            android:parentActivityName=".MainActivity" />
+
         <activity
             android:name=".Report"
             android:parentActivityName=".MainActivity" />

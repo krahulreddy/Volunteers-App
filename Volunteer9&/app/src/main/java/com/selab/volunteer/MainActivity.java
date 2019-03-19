@@ -72,6 +72,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent3 = new Intent(MainActivity.this, Wallet.class);
                 startActivity(intent3);
                 break;
+//            case R.id.nav_gallery:
+//                // getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Wallet()).commit();
+//                Intent intent5 = new Intent(MainActivity.this, Gallery.class);
+//                startActivity(intent5);
+//                break;
             case R.id.nav_host:
                 //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new Hosting()).commit();
                 Intent intent2 = new Intent(MainActivity.this, HostAnEvent.class);

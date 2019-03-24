@@ -120,7 +120,7 @@
 
         <activity
             android:name=".Gallery"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".Profile" />
 
         <activity
             android:name=".Report"

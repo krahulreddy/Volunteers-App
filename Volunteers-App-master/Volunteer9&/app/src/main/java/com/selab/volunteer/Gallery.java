@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Gallery extends AppCompatActivity {
 
@@ -77,25 +79,25 @@ public class Gallery extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
 
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                images.clear();
-                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                        images.add(postSnapshot.getValue(ImgUpload.class));
-                    //imgUploads.add(postSnapshot.getKey());
-                    //ImgUpload imgUpload = new ImgUpload(postSnapshot.getKey(), Objects.requireNonNull(postSnapshot.getValue(String.class)));
-                    //images.add(imgUpload);
-                }
-                imageAdapter = new ImageAdapter(getApplicationContext(), images);
-                recyclerView.setAdapter(imageAdapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                images.clear();
+//                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+//                    images.add(postSnapshot.getValue(ImgUpload.class));
+//                    imgUploads.add(postSnapshot.getKey());
+//                    ImgUpload imgUpload = new ImgUpload(postSnapshot.getKey(), Objects.requireNonNull(postSnapshot.getValue(String.class)));
+//                    images.add(imgUpload);
+//                }
+//                imageAdapter = new ImageAdapter(getApplicationContext(), images);
+//                recyclerView.setAdapter(imageAdapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
     }
     private void ChooseImage(){
@@ -128,7 +130,12 @@ public class Gallery extends AppCompatActivity {
 
                             ImgUpload imgUpload1 = new ImgUpload(name, uri.toString());
                             String uploadId = databaseReference.push().getKey();
-                            databaseReference.child(uploadId).setValue(imgUpload1);
+                            databaseReference.child(uploadId).setValue(imgUpload1).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
 
                             Toast.makeText(getApplicationContext(), uri.toString(), Toast.LENGTH_SHORT).show();
                         }

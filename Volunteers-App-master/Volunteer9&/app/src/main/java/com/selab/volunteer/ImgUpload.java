@@ -22,11 +22,11 @@ public class ImgUpload {
         this.name = name;
     }
 
-    public String getURL() {
-        return URL;
+    public String geturl() {
+        return this.URL;
     }
 
-    public void setURL(String URL) {
-        this.URL = URL;
+    public void seturl(String url) {
+        this.URL = url;
     }
 }

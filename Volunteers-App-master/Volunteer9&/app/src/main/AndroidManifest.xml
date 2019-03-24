@@ -60,7 +60,7 @@
             android:name=".Login"
             android:label="Volunteers"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -71,11 +71,13 @@
             android:name=".SignUp"
             android:label="@string/SignUp"
             android:noHistory="true"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".Login" />
         <activity
             android:name=".ForgotPassword"
             android:label="@string/ResetPassword"
             android:noHistory="true"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".Login" />
         <activity
             android:name=".MainActivity"
@@ -104,6 +106,7 @@
             android:parentActivityName=".MyEvents" />
         <activity
             android:name=".Chatbox"
+            android:windowSoftInputMode="adjustPan"
             android:parentActivityName=".Approved" />
         <activity
             android:name=".EventDescription1"

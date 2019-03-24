@@ -79,25 +79,22 @@ public class Gallery extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
 
 
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                images.clear();
-//                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-//                    images.add(postSnapshot.getValue(ImgUpload.class));
-//                    imgUploads.add(postSnapshot.getKey());
-//                    ImgUpload imgUpload = new ImgUpload(postSnapshot.getKey(), Objects.requireNonNull(postSnapshot.getValue(String.class)));
-//                    images.add(imgUpload);
-//                }
-//                imageAdapter = new ImageAdapter(getApplicationContext(), images);
-//                recyclerView.setAdapter(imageAdapter);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                images.clear();
+                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                    images.add(postSnapshot.getValue(ImgUpload.class));
+                }
+                imageAdapter = new ImageAdapter(getApplicationContext(), images);
+                recyclerView.setAdapter(imageAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
     private void ChooseImage(){

@@ -165,6 +165,10 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Profile.this,Login.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mAuth.signOut();
+                while(mAuth.getCurrentUser() != null){
+                    Toast.makeText(getApplicationContext(), "wait", Toast.LENGTH_LONG).show();
+                }
                 startActivity(intent);
             }
         });
@@ -175,6 +179,10 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(Profile.this,Login.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                mAuth.signOut();
+                while(mAuth.getCurrentUser() != null){
+                    Toast.makeText(getApplicationContext(), "wait", Toast.LENGTH_LONG).show();
+                }
                 startActivity(intent);
             }
         });

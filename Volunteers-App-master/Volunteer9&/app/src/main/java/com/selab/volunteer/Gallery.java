@@ -13,6 +13,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -33,7 +35,6 @@ import java.util.Objects;
 public class Gallery extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-
     private DatabaseReference databaseReference, dr1;
     private StorageReference storageReference;
 
@@ -49,6 +50,8 @@ public class Gallery extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+        ProgressBar progressBar = findViewById(R.id.galleryUploadProgress);
+        progressBar.setVisibility(View.INVISIBLE);
 
         upload = findViewById(R.id.uploadPhoto);
         final EditText name = findViewById(R.id.event_name);
@@ -118,13 +121,21 @@ public class Gallery extends AppCompatActivity {
             final String name = eventName.getText().toString();
             final String uploadName = name + "_" + System.currentTimeMillis() + "." + MimeTypeMap.getSingleton().getExtensionFromMimeType(getContentResolver().getType(mImageUri));
             final StorageReference sr = storageReference.child(uploadName);
-            sr.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            final ProgressBar progressBar = findViewById(R.id.galleryUploadProgress);
+            sr.putFile(mImageUri).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    progressBar.setProgress((int) (taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount()) * 100);
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressBar.setVisibility(View.INVISIBLE);
                     sr.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
-
                             ImgUpload imgUpload1 = new ImgUpload(name, uri.toString());
                             String uploadId = databaseReference.push().getKey();
                             databaseReference.child(uploadId).setValue(imgUpload1).addOnFailureListener(new OnFailureListener() {

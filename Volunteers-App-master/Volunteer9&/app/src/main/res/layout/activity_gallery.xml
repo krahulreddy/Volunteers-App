@@ -27,6 +27,11 @@
             android:layout_weight="50"
             android:hint="Event Name" />
 
+        <ProgressBar
+            android:id="@+id/galleryUploadProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/uploadPhoto"
             android:layout_width="wrap_content"
@@ -35,6 +40,7 @@
             android:layout_weight="50"
             android:background="@drawable/round_button"
             android:text="Upload photo" />
+
 
     </LinearLayout>
 

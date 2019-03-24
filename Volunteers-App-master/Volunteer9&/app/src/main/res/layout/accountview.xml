@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"
+        app:cardElevation="30dp"
+        app:cardCornerRadius="1dp"
+        android:layout_margin="12dp"
+        android:id="@+id/walletcard">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp"
+            android:id="@+id/profilewallet">
+            <ImageView
+                android:id="@+id/accountimageholder"
+                android:layout_width="180dp"
+                android:layout_height="180dp"
+                android:src="@drawable/wallet"
+                android:scaleType="centerCrop"/>
+            <TextView
+                android:id="@+id/accounttextholder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wallet"
+                android:textSize="18sp"
+                android:textColor="@color/blue300"
+                android:layout_marginTop="12dp"
+                />
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+
+</LinearLayout>

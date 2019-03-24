@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:ignore="ScrollViewSize">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue700"
+            android:elevation="4dp"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/AlertDialog.AppCompat.Light"
+            android:layout_marginBottom="150dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaction"
+            android:textColor="@color/buttonColor"
+            android:layout_marginBottom="20dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAllCaps="true"
+            android:layout_gravity="center"
+            />
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Receiver's MailID"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:inputType="text"
+                android:id="@+id/receivermail"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <android.support.design.widget.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Amount"
+                android:textSize="20sp"
+                android:layout_marginBottom="20dp"
+                android:inputType="text"
+                android:id="@+id/receivermoney"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/round_button"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            android:id="@+id/sendmoney"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.selab.volunteer">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/volunteer"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/volunteer"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyC4yBrNsXN070X4xKv5paaJRpJvPf-3SBM" />
+        <activity android:name=".profileSupport"
+            android:parentActivityName=".Settings"></activity>
+        <activity
+            android:name=".ChangePassword"
+            android:noHistory="true" />
+        <activity
+            android:name=".ChangePhoneNumber" />
+        <activity
+            android:name=".changeusername"
+            android:noHistory="true" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
+        <activity
+            android:name=".Login"
+            android:label="Volunteers"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignUp"
+            android:label="@string/SignUp"
+            android:noHistory="true"
+            android:parentActivityName=".Login" />
+        <activity
+            android:name=".ForgotPassword"
+            android:label="@string/ResetPassword"
+            android:noHistory="true"
+            android:parentActivityName=".Login" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:parentActivityName=".Login"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".MyEvents"
+            android:noHistory="true"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".List_of_Events"
+            android:parentActivityName=".MyEvents" />
+        <activity
+            android:name=".HostFinal"
+            android:noHistory="true"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".VolunteerEvents"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Waitlisted"
+            android:parentActivityName=".MyEvents" />
+        <activity
+            android:name=".Approved"
+            android:parentActivityName=".MyEvents" />
+        <activity
+            android:name=".Chatbox"
+            android:parentActivityName=".Approved" />
+        <activity
+            android:name=".EventDescription1"
+            android:parentActivityName=".List_of_Events" />
+        <activity
+            android:name=".EventDescription2"
+            android:parentActivityName=".VolunteerEvents" />
+        <activity
+            android:name=".EventDescription3"
+            android:parentActivityName=".Waitlisted" />
+        <activity
+            android:name=".EventDescription4"
+            android:parentActivityName=".Approved" />
+
+        <activity
+            android:name=".Gallery"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".Report"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".feedbacktab"
+            android:label="Feedback"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Settings"
+            android:parentActivityName=".Profile" />
+        <activity
+            android:name=".CalenderActivity"
+            android:noHistory="true"
+            android:parentActivityName=".HostAnEvent" />
+        <activity
+            android:name=".Transact"
+            android:label="Transact"
+            android:parentActivityName=".Profile" />
+        <activity
+            android:name=".HostAnEvent"
+            android:noHistory="true"
+            android:parentActivityName=".MainActivity" />
+
+        <activity
+            android:name=".Wallet"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".Profile"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".accountsettings"
+            android:parentActivityName=".Settings" />
+        <activity
+            android:name=".Terms_conditions"
+            android:parentActivityName=".Settings" />
+
+    </application>
+
+</manifest>

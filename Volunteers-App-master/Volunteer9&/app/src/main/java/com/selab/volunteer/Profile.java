@@ -188,8 +188,8 @@ public class Profile extends AppCompatActivity {
             }
         });
 
-        LinearLayout achievement=(LinearLayout)findViewById(R.id.profileachievement);
-        achievement.setOnClickListener(new View.OnClickListener() {
+        LinearLayout gallery=(LinearLayout)findViewById(R.id.profileachievement);
+        gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(Profile.this,Gallery.class);

@@ -59,6 +59,28 @@ public class Login extends AppCompatActivity {
 
         TextView signup = (TextView)findViewById(R.id.signup);
         mAuth = FirebaseAuth.getInstance();
+
+        if(mAuth.getCurrentUser() != null){
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            // Toast.makeText(Login.this, mAuth.getUid(), Toast.LENGTH_SHORT).show();
+            DatabaseReference reff = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).child("name");
+
+            reff.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Toast.makeText(Login.this, ""+ dataSnapshot.getValue(), Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            //intent.putExtra("CurrentUserId", mAuth.getUid() );
+            startActivity(intent);
+            progress.setVisibility(View.GONE);
+            layout.setVisibility(View.VISIBLE);
+        }
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

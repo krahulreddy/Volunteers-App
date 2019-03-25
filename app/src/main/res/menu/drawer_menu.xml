@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/ic_event_available"
+            android:title="MyEvents" />
+        <item
+            android:id="@+id/nav_host"
+            android:icon="@drawable/ic_hosting"
+            android:title="Host an Event" />
+        <item
+            android:id="@+id/nav_volunteer"
+            android:icon="@drawable/ic_volunteering"
+            android:title="Volunteering" />
+
+        <item
+            android:id="@+id/nav_wallet"
+            android:icon="@drawable/ic_wallet"
+            android:title="Wallet" />
+
+        <!--<item-->
+            <!--android:id="@+id/nav_gallery"-->
+            <!--android:icon="@drawable/ic_gallery"-->
+            <!--android:title="Gallery" />-->
+    </group>
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share"
+                android:title="Share"></item>
+            <item
+                android:id="@+id/nav_feedback"
+                android:icon="@drawable/ic_feedback"
+                android:title="Feedback"></item>
+            <item
+                android:id="@+id/nav_report"
+                android:icon="@drawable/ic_report"
+                android:title="Report"></item>
+        </menu>
+    </item>
+</menu>

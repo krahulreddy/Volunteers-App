@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "79647855354",
+    "firebase_url": "https://volunteer-1aa1f.firebaseio.com",
+    "project_id": "volunteer-1aa1f",
+    "storage_bucket": "volunteer-1aa1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:79647855354:android:509c0a6dfbe7897e",
+        "android_client_info": {
+          "package_name": "com.selab.volunteer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "79647855354-5f0q33auvqueit72mtqb0q13mablubi3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selab.volunteer",
+            "certificate_hash": "5de1745dc16129ab293821f51c5750ee5a23265d"
+          }
+        },
+        {
+          "client_id": "79647855354-6dllmqoo1beqb6e9vbcnbsodkj7vkos5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.selab.volunteer",
+            "certificate_hash": "871864ce570f680ae7480baf14dc2cad2420a45d"
+          }
+        },
+        {
+          "client_id": "79647855354-4j876a5d5m0acmafsscii6u0r0qnhtbq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCY_8_5gaJ6_h7hoIUAaTeo09-o2tUUfA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "79647855354-4j876a5d5m0acmafsscii6u0r0qnhtbq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Terms_conditions"
+    android:background="@android:color/white"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/blue700"
+        android:elevation="4dp"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/AlertDialog.AppCompat.Light"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="TERMS AND CONDITIONS"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25dp"
+        android:layout_gravity="center"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="match_parent"
+        android:text="We know that volunteers care how sensitive information about themselves is used and shared, and we appreciate the volunteer trust that we will carefully and sensibly secure said information. All traffic is monitored and recorded to protect private company information. Love Volunteers agrees to keep all information submitted by the volunteer to Love Volunteers private and confidential.\n The security of personal information is important to us. Volunteers follow generally accepted industry standards to protect the personal information submitted to us, both during transmission and once we receive it. However, no method of transmission over the Internet, or method of electronic storage, is 100% secure. Therefore, while we strive to use commercially acceptable means to protect personal information, we cannot guarantee its absolute security nor will we be held liable for its misuse.\nThe volunteer agrees that Volunteers shall not be responsible to pay any compensation where the performance or prompt performance of Volunteers or our partner’s contractual obligations is prevented or affected by reasons or circumstances amounting to ‘force majeure’.
+Circumstances amounting to ‘force majeure’ include any event which we or the supplier of the service(s) in question could not, even with all due care, avoid such as, without limitation, plane delays, war or threat of war, civil strife, government intervention, natural or nuclear disaster, industrial dispute, terrorist activity, adverse weather conditions, fire, and similar events.\n Volunteers does not warrant or make any representations regarding the correctness, accuracy, reliability, or otherwise of the materials in this site or the result of their use. No representation or warranty is made that the site or information provide comprehensive or accurate information. We reserve the right to filter, modify or remove content, media, information or any other material from the site or information and from the output of the site or information.
+Volunteers reserves the right to discontinue or alter any aspect of the services provided at any time. Notwithstanding anything else contained in these Terms and Conditions, volunteer agrees that the liability of Love Volunteers to the volunteer shall not in aggregate exceed the amount of the registration fee paid by the volunteer.\nModifications to Terms. Volunteers may change these Terms from time to time. If the volunteer objects to any such changes, the volunteer’s sole recourse will be to cease using the App and reading any more of the Information. Continued use of the App or the Information following posting of any such changes will indicate the volunteer’s acknowledgment of such changes and their agreement to be bound by the revised Terms, inclusive of such changes.
+Modifications to Information. Volunteers reserve the right to modify the App and/or Information at any time without notice. If the volunteer objects to any changes to the Site or Information, the volunteer’s sole recourse will be to cease using the Site and Information. Continued use of the Site or Information following posting of any such changes will indicate your acknowledgment of such changes and satisfaction with the Information as so modified. We also reserve the right to discontinue the App and/or Information at any time without notice. We will not be liable to you or any third-party should we exercise our right to modify or discontinue the Site.
+Severability. If any provision (or portion of thereof) of these Terms and Conditions or Legal Disclaimer is declared by an arbitrator, mediator, or court of competent jurisdiction to be invalid or unenforceable, the remaining provisions shall remain in full force and, as far as possible, the arbitrator, mediator, or court shall limit the scope or application of the affected clause to the least extent possible in order that it may be valid and enforceable.\n BY USING THE APP OR ANY OF ITS INFORMATION, YOU ACKNOWLEDGE AND REPRESENT THAT (i) YOU HAVE READ THESE TERMS FULLY, (ii) UNDERSTAND THEM, (iii) AGREE TO BE BOUND BY THEM, (iv) YOU ARE AT LEAST 18 YEARS OLD, and/or (v) IF YOU ARE UNDER 18 YEARS OLD, YOUR LEGAL GUARDIAN HAS GIVEN YOU PERMISSION TO VIEW THE APP AND YOUR GUARDIAN AGREES TO BE BOUND BY THESE TERMS AND CONDITIONS.
+
+IF YOU DO NOT AGREE TO ANY OF THE TERMS BELOW, WE ARE UNWILLING TO GRANT YOU ACCESS TO THE APP AND CAN DELETE YOUR ACCOUNT OR THE INFORMATION, AND IF YOU DO SO ANYWAY, YOU DO SO ON YOUR OWN ACCORD AND AT YOUR OWN RISK."
+        android:textAllCaps="true"
+        android:textColorLink="@color/colorPrimary"
+        android:textFontWeight="32sp"
+        android:textStyle="normal|italic|bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
+
+</LinearLayout>
+</ScrollView>

@@ -6,11 +6,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,7 +31,9 @@ public class VolunteerEvents extends AppCompatActivity {
 
 
     DatabaseReference databaseEvents;
-
+    List<EventOneSchema> eventList1 = new ArrayList<>();
+    List<EventOneSchema> eventList2 = new ArrayList<>();
+    List<EventOneSchema> eventList3 = new ArrayList<>();
     FirebaseAuth mAuth;
 
     ListView listViewVolunteerEvents;
@@ -48,15 +54,13 @@ public class VolunteerEvents extends AppCompatActivity {
 
 
         // Spinner Drop down elements
-        ArrayList<String> categories = new ArrayList<String>();
+        ArrayList<String> categories = new ArrayList<>();
         categories.add("Sort");
-        categories.add("Distance");
         categories.add("Name");
         categories.add("Money");
-        categories.add("Rating");
-        categories.add("Date");
+        categories.add("Location");
 
-        ArrayList<String> genres = new ArrayList<String>();
+        ArrayList<String> genres = new ArrayList<>();
         genres.add("Filter");
         genres.add("Inauguration");
         genres.add("NGO");
@@ -65,8 +69,8 @@ public class VolunteerEvents extends AppCompatActivity {
 
 
         // Creating adapter for spinner
-        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, genres);
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, genres);
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dataAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -77,9 +81,36 @@ public class VolunteerEvents extends AppCompatActivity {
         databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events");
         mAuth = FirebaseAuth.getInstance();
 
-        listViewVolunteerEvents = (ListView) findViewById(R.id.listview_volun);
+        listViewVolunteerEvents = findViewById(R.id.listview_volun);
         eventMap = new HashMap<>();
         tempMap = new HashMap<>();
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // Notify the selected item text
+                Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT).show();
+                if(selectedItemText.compareTo("Name")==0){
+                    EventList2 adapter1 = new EventList2(VolunteerEvents.this , eventList1);
+                    listViewVolunteerEvents.setAdapter(adapter1);
+                }
+                if(selectedItemText.compareTo("Money")==0){
+                    EventList2 adapter2 = new EventList2(VolunteerEvents.this , eventList3);
+                    listViewVolunteerEvents.setAdapter(adapter2);
+                }
+                if(selectedItemText.compareTo("Location")==0){
+                    EventList2 adapter3 = new EventList2(VolunteerEvents.this , eventList2);
+                    listViewVolunteerEvents.setAdapter(adapter3);
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
@@ -106,8 +137,13 @@ public class VolunteerEvents extends AppCompatActivity {
 
                 }
 
-                List<EventOneSchema> eventList = new ArrayList<EventOneSchema>(eventMap.keySet());
-
+                List<EventOneSchema> eventList = new ArrayList<>(eventMap.keySet());
+                eventList1 = new ArrayList<>((eventMap.keySet()));
+                eventList2 = new ArrayList<>((eventMap.keySet()));
+                eventList3 = new ArrayList<>((eventMap.keySet()));
+                Collections.sort(eventList1,new Sortbyname());
+                Collections.sort(eventList2,new Sortbylocation());
+                Collections.sort(eventList3,new SortbyPayment());
                 EventList2 adapter = new EventList2(VolunteerEvents.this , eventList);
                 listViewVolunteerEvents.setAdapter(adapter);
 
@@ -122,4 +158,32 @@ public class VolunteerEvents extends AppCompatActivity {
 
 
 
+}
+class Sortbyname implements Comparator<EventOneSchema>
+{
+    // Used for sorting in ascending order of
+    // roll number
+    public int compare(EventOneSchema a,  EventOneSchema b)
+    {
+        return a.name.compareToIgnoreCase(b.name);
+    }
+}
+
+class Sortbylocation implements Comparator<EventOneSchema>
+{
+    // Used for sorting in ascending order of
+    // roll name
+    public int compare(EventOneSchema a, EventOneSchema b)
+    {
+        return a.location.compareToIgnoreCase(b.location);
+    }
+}
+class SortbyPayment implements Comparator<EventOneSchema>
+{
+    // Used for sorting in ascending order of
+    // roll name
+    public int compare(EventOneSchema a, EventOneSchema b)
+    {
+        return a.payment - b.payment;
+    }
 }

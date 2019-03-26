@@ -45,13 +45,13 @@ public class SignUp extends AppCompatActivity {
                 flag = 0;
                 Newpage = new Intent(SignUp.this, Login.class);
 
-                TextView name = (TextView) findViewById(R.id.name);
-                TextView mail = (TextView) findViewById(R.id.mail);
-                TextView phone = (TextView) findViewById(R.id.phone);
-                TextView pass = (TextView) findViewById(R.id.pass);
-                TextView pass_cpy = (TextView) findViewById(R.id.pass_cpy);
+                TextView name = findViewById(R.id.name);
+                TextView mail = findViewById(R.id.mail);
+                TextView phone = findViewById(R.id.phone);
+                TextView pass = findViewById(R.id.pass);
+                TextView pass_cpy = findViewById(R.id.pass_cpy);
 
-                final String Name = name.getText().toString();
+                final String Name = name.getText().toString().trim();
                 final String Mail = mail.getText().toString();
                 final String Phone = phone.getText().toString();
                 final String Pass = pass.getText().toString();

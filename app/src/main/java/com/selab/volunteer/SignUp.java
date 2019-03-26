@@ -125,6 +125,8 @@ public class SignUp extends AppCompatActivity {
                                             user.setwallet();
                                             user.seturl();
                                             dataBase.child(mAuth.getUid()).setValue(user);
+                                            mAuth.signOut();
+                                            while(mAuth.getCurrentUser()!= null);
                                           /*  dataBase1 = FirebaseDatabase.getInstance().getReference();
                                             dataBase1.addValueEventListener(new ValueEventListener() {
                                                 @Override

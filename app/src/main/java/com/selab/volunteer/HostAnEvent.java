@@ -45,6 +45,8 @@ public class HostAnEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hostanevent);
+        Intent incoming = getIntent();
+        final String date = incoming.getStringExtra("date");
         nextbutton = (Button) findViewById(R.id.NextStep);
         EventName=(EditText)findViewById(R.id.HostAnEventName);
         EventDate=(TextView) findViewById(R.id.HostAnEventDate);
@@ -53,8 +55,7 @@ public class HostAnEvent extends AppCompatActivity {
         EventPay=(EditText)findViewById(R.id.HostAnEventMoney);
         GoToCalender=(Button)findViewById(R.id.GoToCalender);
         cancelhost=(Button)findViewById(R.id.CancelHost) ;
-        Intent incoming = getIntent();
-        final String date = incoming.getStringExtra("date");
+
         EventDate.setText(date);
         HostAnEventTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
             @Override

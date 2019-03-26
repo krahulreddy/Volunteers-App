@@ -100,7 +100,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".HostFinal"
-            android:noHistory="true"
+            android:noHistory="false"
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -151,7 +151,7 @@
             android:parentActivityName=".Profile" />
         <activity
             android:name=".CalenderActivity"
-            android:noHistory="true"
+            android:noHistory="false"
             android:parentActivityName=".HostAnEvent"
             android:windowSoftInputMode="adjustPan" />
         <activity
@@ -161,7 +161,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".HostAnEvent"
-            android:noHistory="true"
+            android:noHistory="false"
             android:parentActivityName=".MainActivity"
             android:windowSoftInputMode="adjustPan" />
 

@@ -505,4 +505,9 @@ public class Profile extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Profile.this,MainActivity.class));
+    }
 }

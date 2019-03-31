@@ -11,6 +11,14 @@ public class CalenderActivity extends AppCompatActivity {
 
     private  static final String TAG = "CalendarActivity";
     private CalendarView mCalendarView;
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = new Intent(CalenderActivity.this, HostAnEvent.class);
+        startActivity(intent);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,5 +36,6 @@ public class CalenderActivity extends AppCompatActivity {
 
             }
         });
+
     }
 }

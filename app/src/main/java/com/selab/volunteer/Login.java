@@ -51,11 +51,14 @@ public class Login extends AppCompatActivity {
 
         Login.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.logintoolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("LOG IN");
+
 
         layout=(LinearLayout)findViewById(R.id.loginlayout);
         layout.setVisibility(View.VISIBLE);
-        Toolbar toolbar= findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         Username=findViewById(R.id.username);
         Password=findViewById(R.id.password);

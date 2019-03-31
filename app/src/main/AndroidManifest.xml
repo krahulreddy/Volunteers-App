@@ -63,7 +63,7 @@
             android:label="@string/title_activity_maps"></activity>
         <activity
             android:name=".Login"
-            android:label="Volunteers"
+            android:label="Volunteer"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateVisible|adjustPan">
             <intent-filter>
@@ -145,7 +145,7 @@
             android:name=".feedbacktab"
             android:label="Feedback"
             android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Settings"
             android:parentActivityName=".Profile" />

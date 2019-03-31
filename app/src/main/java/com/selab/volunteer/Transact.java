@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -70,48 +71,26 @@ public class Transact extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (TextUtils.isEmpty(money.getText())) {
+                    money.setError("Enter money");
+                } else {
 
-
-
-                if(amount1 < Integer.parseInt(money.getText()+"") || Integer.parseInt(money.getText()+"") <= 0){
-                    Toast.makeText(Transact.this, "Cannot Transact", Toast.LENGTH_SHORT).show();
-                    flag = 0;
-                    Intent intent = new Intent(Transact.this, Wallet.class);
-                    startActivity(intent);
-                }
-                else if(flag == 1){
-                    tempdata2 = FirebaseDatabase.getInstance().getReference().child("Users");
-                    tempdata2.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for(DataSnapshot childsnap : dataSnapshot.getChildren()){
-                                if((childsnap.child("mail").getValue()+"").equals((receiver.getText()+"").trim())){
-                                    text = childsnap.getKey();
-                                    break;
-                                }
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    if(text!=null && (!text.matches(mAuth.getUid()))) {
-                        tempdata = FirebaseDatabase.getInstance().getReference().child("Users/" + text);
-                        tempdata.addListenerForSingleValueEvent(new ValueEventListener() {
+                    if (amount1 < Integer.parseInt(money.getText() + "") || Integer.parseInt(money.getText() + "") <= 0) {
+                        Toast.makeText(Transact.this, "Cannot Transact", Toast.LENGTH_SHORT).show();
+                        flag = 0;
+                        Intent intent = new Intent(Transact.this, Wallet.class);
+                        startActivity(intent);
+                    } else if (flag == 1) {
+                        tempdata2 = FirebaseDatabase.getInstance().getReference().child("Users");
+                        tempdata2.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                receivemoney = dataSnapshot.child("wallet").getValue()+"";
-                                receivemoney1 = Integer.parseInt(receivemoney);
-                                receivemoney2 = receivemoney1;
-                                receivemoney1 = receivemoney2 + Integer.parseInt(money.getText()+"");
-                                tempdata.child("wallet").setValue(receivemoney1);
-                                amount1 = amount1 - Integer.parseInt(money.getText()+"");
-                                databaseReference.child("wallet").setValue(amount1);
-
-                                //Toast.makeText(Transact.this, ""+receivemoney1, Toast.LENGTH_SHORT).show();
-                               // receivemoney1 = receivemoney2 + Integer.parseInt(money.getText().toString());
+                                for (DataSnapshot childsnap : dataSnapshot.getChildren()) {
+                                    if ((childsnap.child("mail").getValue() + "").equals((receiver.getText() + "").trim())) {
+                                        text = childsnap.getKey();
+                                        break;
+                                    }
+                                }
                             }
 
                             @Override
@@ -119,22 +98,43 @@ public class Transact extends AppCompatActivity {
 
                             }
                         });
-                        Intent intent1 = new Intent(Transact.this, Profile.class);
-                        startActivity(intent1);
+
+                        if (text != null && (!text.matches(mAuth.getUid()))) {
+                            tempdata = FirebaseDatabase.getInstance().getReference().child("Users/" + text);
+                            tempdata.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    receivemoney = dataSnapshot.child("wallet").getValue() + "";
+                                    receivemoney1 = Integer.parseInt(receivemoney);
+                                    receivemoney2 = receivemoney1;
+                                    receivemoney1 = receivemoney2 + Integer.parseInt(money.getText() + "");
+                                    tempdata.child("wallet").setValue(receivemoney1);
+                                    amount1 = amount1 - Integer.parseInt(money.getText() + "");
+                                    databaseReference.child("wallet").setValue(amount1);
+
+                                    //Toast.makeText(Transact.this, ""+receivemoney1, Toast.LENGTH_SHORT).show();
+                                    // receivemoney1 = receivemoney2 + Integer.parseInt(money.getText().toString());
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            Intent intent1 = new Intent(Transact.this, Profile.class);
+                            startActivity(intent1);
 
 
+                            //}
+                        } else {
+                            if (text == null || text.matches(mAuth.getUid()))
+                                Toast.makeText(Transact.this, "Confirm Credentials again", Toast.LENGTH_SHORT).show();
 
-                        //}
+                        }
                     }
-                    else
-                    {
-                        if(text==null || text.matches(mAuth.getUid()) )
-                            Toast.makeText(Transact.this, "Confirm Credentials again", Toast.LENGTH_SHORT).show();
 
-                    }
+
                 }
-
-
             }
         });
     }

@@ -24,8 +24,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -68,6 +70,7 @@ public class Profile extends AppCompatActivity {
     TextView pname,pemail,pphno;
     String downloadUrl;
     de.hdodenhof.circleimageview.CircleImageView pro;
+    private StorageReference profilepics;
 
 
 
@@ -288,76 +291,96 @@ public class Profile extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        Bitmap bitmap;
-        if (resultCode == Activity.RESULT_OK) {
+        if(requestCode==200)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                Uri file=data.getData();
+                profilepics=FirebaseStorage.getInstance().getReference().child("ProfilePics").child(file.getLastPathSegment());
+                profilepics.putFile(file).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-            ImageView imageView = (ImageView) findViewById(R.id.profileDP);
-
-            if (getPickImageResultUri(data) != null) {
-                picUri = getPickImageResultUri(data);
-
-                try {
-                    myBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), picUri);
-                    myBitmap = rotateImageIfRequired(myBitmap, picUri);
-                    myBitmap = getResizedBitmap(myBitmap, 500);
-
-                    CircleImageView croppedImageView = (CircleImageView) findViewById(R.id.profileDP);
-                    croppedImageView.setImageBitmap(myBitmap);
-                    imageView.setImageBitmap(myBitmap);
-                    FirebaseUser cuser = mAuth.getCurrentUser();
-                    String id = cuser.getUid();
-
-                    final StorageReference mountainref = storageReference.child(id+".jpg");
-
-                    myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                    byte[] dataphoto = baos.toByteArray();
-
-                    UploadTask uploadTask = mountainref.putBytes(dataphoto);
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            //Uri durl=taskSnapshot.getMetadata().getDo; //contains file metadata such as size, content-type, etc.
-                            // ...
-                            mountainref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
-                                    downloadUrl = uri.toString();
-                                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).child("url");
-                                    databaseReference.setValue(downloadUrl);
-
-                                }
-                            });
-                        }
-                    });
-
-
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-            } else {
-
-
-                bitmap = (Bitmap) data.getExtras().get("data");
-
-                myBitmap = bitmap;
-                CircleImageView croppedImageView = (CircleImageView) findViewById(R.id.profileDP);
-                if (croppedImageView != null) {
-                    croppedImageView.setImageBitmap(myBitmap);
-                }
-
-                imageView.setImageBitmap(myBitmap);
-
+                        taskSnapshot.getMetadata().getReference().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                               String profilelink= task.getResult().toString();
+                               FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child("url").setValue(profilelink);
+                            }
+                        });
+                    }
+                });
             }
-
         }
+
+//        Bitmap bitmap;
+//        if (resultCode == Activity.RESULT_OK) {
+//
+//            ImageView imageView = (ImageView) findViewById(R.id.profileDP);
+//
+//            if (getPickImageResultUri(data) != null) {
+//                picUri = getPickImageResultUri(data);
+//
+//                try {
+//                    myBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), picUri);
+//                    myBitmap = rotateImageIfRequired(myBitmap, picUri);
+//                    myBitmap = getResizedBitmap(myBitmap, 500);
+//
+//                    CircleImageView croppedImageView = (CircleImageView) findViewById(R.id.profileDP);
+//                    croppedImageView.setImageBitmap(myBitmap);
+//                    imageView.setImageBitmap(myBitmap);
+//                    FirebaseUser cuser = mAuth.getCurrentUser();
+//                    String id = cuser.getUid();
+//
+//                    final StorageReference mountainref = storageReference.child(id+".jpg");
+//
+//                    myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+//                    byte[] dataphoto = baos.toByteArray();
+//
+//                    UploadTask uploadTask = mountainref.putBytes(dataphoto);
+//                    uploadTask.addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//
+//                        }
+//                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                            Task<Uri> mytask = taskSnapshot.getMetadata().getReference().getDownloadUrl();
+//                            mytask.addOnCompleteListener(new OnCompleteListener<Uri>() {
+//                                @Override
+//                                public void onComplete(@NonNull Task<Uri> task) {
+//                                    String mydownloadlink = task.getResult().toString();
+//                                    databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid()).child("url");
+//                                    databaseReference.setValue(mydownloadlink);
+//
+//                                }
+//                            });
+//                        }});
+//
+//
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            } else {
+//
+//
+//                bitmap = (Bitmap) data.getExtras().get("data");
+//
+//                myBitmap = bitmap;
+//                CircleImageView croppedImageView = (CircleImageView) findViewById(R.id.profileDP);
+//                if (croppedImageView != null) {
+//                    croppedImageView.setImageBitmap(myBitmap);
+//                }
+//
+//                imageView.setImageBitmap(myBitmap);
+//
+//            }
+//
+//        }
 
     }
 
@@ -504,5 +527,10 @@ public class Profile extends AppCompatActivity {
                 break;
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(Profile.this,MainActivity.class));
     }
 }

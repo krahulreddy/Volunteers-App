@@ -1,6 +1,7 @@
 package com.selab.volunteer;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Report extends AppCompatActivity {
 
     private int flag=0;
@@ -19,6 +22,8 @@ public class Report extends AppCompatActivity {
     private String Event;
     private String Reason;
     private String Repoemail;
+    private String displayname=FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
 
 
     @Override
@@ -26,16 +31,15 @@ public class Report extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
 
-        final EditText email=(EditText)findViewById(R.id.reportemail);
-        email.setVisibility(View.GONE);
-        check=0;
 
         final EditText Name=(EditText)findViewById(R.id.reportName);
         final EditText event=(EditText)findViewById(R.id.reportevent);
         final EditText reason=(EditText)findViewById(R.id.reportreason);
         Button submit=(Button)findViewById(R.id.reportsubmit) ;
         final CheckBox box=(CheckBox)findViewById(R.id.box);
-
+        final EditText email=(EditText)findViewById(R.id.reportemail);
+        email.setVisibility(View.GONE);
+        check=0;
         box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +92,20 @@ public class Report extends AppCompatActivity {
                 {
                     Intent report=new Intent(Report.this,MainActivity.class);
                     startActivity(report);
-                    Toast.makeText(Report.this,"Reported Successfully",Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(Intent.ACTION_SENDTO);
+                    i.setData(Uri.parse("mailto:"));
+                    i.putExtra(Intent.EXTRA_EMAIL,new String[] {"hemanthsai392@gmail.com"});
+                    i.putExtra(Intent.EXTRA_SUBJECT,"Reporting Volunteer App User");
+                    i.putExtra(Intent.EXTRA_TEXT,"Dear Binary Warriors, \n"+ "\n Please Check The Activites Of The Following User "+Name.getText().toString()+" \n  Regards, \n" + "User" );
+
+                    try{
+                        startActivity(Intent.createChooser(i,"send mail"));
+                    }catch(android.content.ActivityNotFoundException ex){
+                        Toast.makeText(Report.this,"no mail app found", Toast.LENGTH_SHORT).show();
+                    }catch (Exception ex){
+                        Toast.makeText(Report.this,"unexpected error" + ex.toString(),Toast.LENGTH_SHORT).show();
+                    }
+                    //Toast.makeText(Report.this,"Reported Successfully",Toast.LENGTH_SHORT).show();
                 }
             }
         });    }

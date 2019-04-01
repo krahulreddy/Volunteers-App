@@ -85,68 +85,66 @@ public class HostAnEvent extends AppCompatActivity {
         nextbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String eventname=EventName.getText().toString();
-                final String eventdesc=EventDesc.getText().toString();
-                final String eventpay=EventPay.getText().toString();
-                //Have to remove this hardcoded location and add money to the database
-                final String eventlocation="nitk";
-                Date presdate= Calendar.getInstance().getTime();
-                try {
-                    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                    eventdate= df.parse(date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                if(eventname.length()==0)
-                {
-                    EventName.requestFocus();
-                    EventName.setError("NAME CANNOT BE EMPTY!");
-                }
-                else if(presdate.after(eventdate))
-                {
+                if (date == null) {
                     EventDate.requestFocus();
-                    EventDate.setError("EVENT DATE CANNOT BE A PAST DATE!");
-                }
-                else if(!eventname.matches("[a-zA-z ]*+"))
-                {
-                    EventName.requestFocus();
-                    EventName.setError("ONLY ALPHABETICAL CHARACTERS ALLOWED!");
-                }
-                else if(date.length()==0) {
-                    EventDate.requestFocus();
-                    EventDate.setError("SELECT A DATE!");
-                }
-                else if(eventpay.length()==0)
-                {
-                    EventPay.requestFocus();
-                    EventPay.setError("PAYMENT CANNOT BE EMPTY!");
+                    EventDate.setError("");
+                    Toast.makeText(getApplicationContext(),"Select Event Date!",Toast.LENGTH_LONG).show();;
+                } else {
+                    final String eventdateS = EventDate.getText().toString().trim();
+                    final String eventname = EventName.getText().toString().trim();
+                    final String eventdesc = EventDesc.getText().toString().trim();
+                    final String eventpay = EventPay.getText().toString().trim();
+                    final String eventlocation = "nitk";
+                    Date presdate = Calendar.getInstance().getTime();
+                    if (eventdateS != null) {
+                        try {
+                            DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                            eventdate = df.parse(date);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (eventname.length() == 0) {
+                        EventName.requestFocus();
+                        EventName.setError("NAME CANNOT BE EMPTY!");
+                    } else if (eventdateS.length() == 0) {
+                        EventDate.requestFocus();
+                        EventDate.setError("EVENT DATE CANNOT BE EMPTY");
+                    } else if (eventdateS != null) {
+                        if (presdate.after(eventdate)) {
+                            EventDate.requestFocus();
+                            EventDate.setError("EVENT DATE CANNOT BE A PAST DATE!");
+                        }
+                    } else if (!eventname.matches("[a-zA-z ]*+")) {
+                        EventName.requestFocus();
+                        EventName.setError("ONLY ALPHABETICAL CHARACTERS ALLOWED!");
+                    } else if (date.length() == 0) {
+                        EventDate.requestFocus();
+                        EventDate.setError("SELECT A DATE!");
+                    } else if (eventpay.length() == 0) {
+                        EventPay.requestFocus();
+                        EventPay.setError("PAYMENT CANNOT BE EMPTY!");
 
-                }
-                else if(eventdesc.length()==0)
-                {
-                    EventDesc.requestFocus();
-                    EventDesc.setError("DESCRIPTION CANNOT BE EMPTY!");
+                    } else if (eventdesc.length() == 0) {
+                        EventDesc.requestFocus();
+                        EventDesc.setError("DESCRIPTION CANNOT BE EMPTY!");
 
-                }
-                else {
-                    Toast.makeText(getApplicationContext(),"Event information saved!",Toast.LENGTH_LONG).show();
-                    //Database starts here
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Event information saved!", Toast.LENGTH_LONG).show();
 
-                    final EventOneSchema eventOneSchema = new EventOneSchema(eventname,date,eventlocation,eventdesc, Integer.parseInt(eventpay));
-                    eventOneSchema.closeEntries = false;
+                        final EventOneSchema eventOneSchema = new EventOneSchema(eventname, date, eventlocation, eventdesc, Integer.parseInt(eventpay));
+                        eventOneSchema.closeEntries = false;
 
 
-                    databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid());
-                    String eventId = databaseEvents.push().getKey();
+                        databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid());
+                        String eventId = databaseEvents.push().getKey();
 
-                    databaseEvents.child(eventId).setValue(eventOneSchema);
+                        databaseEvents.child(eventId).setValue(eventOneSchema);
 
-
-                  //  Toast.makeText(HostAnEvent.this, "" + formax.getMaxid()   , Toast.LENGTH_SHORT).show();
-
-                    Intent i = new Intent(view.getContext(), MapsActivity.class);
-                    i.putExtra("EventId", eventId);
-                    startActivity(i);
+                        Intent i = new Intent(view.getContext(), MapsActivity.class);
+                        i.putExtra("EventId", eventId);
+                        startActivity(i);
+                    }
                 }
             }
         });

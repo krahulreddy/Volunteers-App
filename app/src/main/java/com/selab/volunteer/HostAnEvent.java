@@ -104,18 +104,20 @@ public class HostAnEvent extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
+                    if (eventdateS != null) {
+                        if (presdate.after(eventdate)) {
+                            EventDate.requestFocus();
+                            EventDate.setError("EVENT DATE CANNOT BE A PAST DATE!");
+                        }
+                    }
                     if (eventname.length() == 0) {
                         EventName.requestFocus();
                         EventName.setError("NAME CANNOT BE EMPTY!");
                     } else if (eventdateS.length() == 0) {
                         EventDate.requestFocus();
                         EventDate.setError("EVENT DATE CANNOT BE EMPTY");
-                    } else if (eventdateS != null) {
-                        if (presdate.after(eventdate)) {
-                            EventDate.requestFocus();
-                            EventDate.setError("EVENT DATE CANNOT BE A PAST DATE!");
-                        }
-                    } else if (!eventname.matches("[a-zA-z ]*+")) {
+                    }
+                     else if (!eventname.matches("[a-zA-z ]*+")) {
                         EventName.requestFocus();
                         EventName.setError("ONLY ALPHABETICAL CHARACTERS ALLOWED!");
                     } else if (date.length() == 0) {
@@ -150,4 +152,3 @@ public class HostAnEvent extends AppCompatActivity {
         });
     }
 }
-

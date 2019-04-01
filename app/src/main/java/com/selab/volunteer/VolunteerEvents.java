@@ -127,6 +127,8 @@ public class VolunteerEvents extends AppCompatActivity {
 
                 for( DataSnapshot hostsnapshot: dataSnapshot.getChildren() )
                 {
+                        if(hostsnapshot.getKey().equals(mAuth.getUid()))
+                            continue;
 
                         for( DataSnapshot eventsnapshot: hostsnapshot.getChildren())
                         {

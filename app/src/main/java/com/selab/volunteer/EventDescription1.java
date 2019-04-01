@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -74,8 +75,8 @@ public class EventDescription1 extends AppCompatActivity {
         });
 
         Button ChatBox = findViewById(R.id.Button_chatbox);
-        Button CloseEntriesButton = findViewById(R.id.Button_closeEntries);
-        Button OpenEntriesButton = findViewById(R.id.Button_openEntries);
+        final Button CloseEntriesButton = findViewById(R.id.Button_closeEntries);
+        final Button OpenEntriesButton = findViewById(R.id.Button_openEntries);
 
         ChatBox.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +90,19 @@ public class EventDescription1 extends AppCompatActivity {
         CloseEntriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CloseEntriesButton.setBackground(getResources().getDrawable(R.drawable.round_button1));
+                OpenEntriesButton.setBackground(getResources().getDrawable(R.drawable.round_button));
                 databaseReference.child("closeEntries").setValue(true);
+                Toast.makeText(EventDescription1.this, "Entries are CLOSED", Toast.LENGTH_SHORT).show();
             }
         });
         OpenEntriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CloseEntriesButton.setBackground(getResources().getDrawable(R.drawable.round_button));
+                OpenEntriesButton.setBackground(getResources().getDrawable(R.drawable.round_button1));
                 databaseReference.child("closeEntries").setValue(false);
+                Toast.makeText(EventDescription1.this, "Entries are OPENED", Toast.LENGTH_SHORT).show();
             }
         });
 

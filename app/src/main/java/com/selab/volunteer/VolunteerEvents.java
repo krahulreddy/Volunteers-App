@@ -192,9 +192,12 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
 
                 for( DataSnapshot hostsnapshot: dataSnapshot.getChildren() )
                 {
+                        if(hostsnapshot.getKey().equals(mAuth.getUid()))
+                            continue;
 
                         for( DataSnapshot eventsnapshot: hostsnapshot.getChildren())
                         {
+
                             EventOneSchema eventOneSchema = eventsnapshot.getValue(EventOneSchema.class);
                             tempMap.put(eventsnapshot.getKey(), hostsnapshot.getKey());
                             eventMap.put( eventOneSchema, eventsnapshot.getKey() );

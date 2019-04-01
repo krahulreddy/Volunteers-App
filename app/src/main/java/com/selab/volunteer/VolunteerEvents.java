@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,15 +28,17 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
-public class VolunteerEvents extends AppCompatActivity {
+public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
 
     DatabaseReference databaseEvents;
     List<EventOneSchema> eventList1 = new ArrayList<>();
     List<EventOneSchema> eventList2 = new ArrayList<>();
     List<EventOneSchema> eventList3 = new ArrayList<>();
+    List<EventOneSchema> eventList4 = new ArrayList<>();
     FirebaseAuth mAuth;
-
+    SearchView editsearch ;
+    EventList2 adapter5;
     ListView listViewVolunteerEvents;
 
     static int closeEntries;
@@ -52,7 +55,8 @@ public class VolunteerEvents extends AppCompatActivity {
         Spinner spinner1 = findViewById(R.id.filter);
         // Spinner click listener
 
-
+        editsearch = (SearchView) findViewById(R.id.search);
+        editsearch.setOnQueryTextListener(this);
         // Spinner Drop down elements
         ArrayList<String> categories = new ArrayList<>();
         categories.add("Sort");
@@ -92,7 +96,8 @@ public class VolunteerEvents extends AppCompatActivity {
                 // Notify the selected item text
                 Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT).show();
                 if(selectedItemText.compareTo("Name")==0){
-                    EventList2 adapter1 = new EventList2(VolunteerEvents.this , eventList1);
+                    EventList2 adapter1;
+                    adapter1 = new EventList2(VolunteerEvents.this , eventList1);
                     listViewVolunteerEvents.setAdapter(adapter1);
                 }
                 if(selectedItemText.compareTo("Money")==0){
@@ -111,6 +116,7 @@ public class VolunteerEvents extends AppCompatActivity {
 
             }
         });
+
 
     }
 
@@ -155,6 +161,25 @@ public class VolunteerEvents extends AppCompatActivity {
             }
         });
     }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        List<EventOneSchema> f = new ArrayList<>();
+      for(int i=0;i<eventList1.size();i++)
+      {
+          if(eventList1.get(i).name.contains(newText))
+              f.add(eventList1.get(i));
+      }
+        adapter5 = new EventList2(VolunteerEvents.this , f);
+      listViewVolunteerEvents.setAdapter(adapter5);
+      return false;
+      }
 
 
 

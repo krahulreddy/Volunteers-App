@@ -69,7 +69,6 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
         categories.add("Location");
 
         ArrayList<String> genres = new ArrayList<>();
-        genres.add("Filter");
         genres.add("Charity");
         genres.add("Sports");
         genres.add("Cultural");
@@ -164,6 +163,7 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
                         eventList7.clear();
                         if(eventList1.get(i).type.compareTo("Charity")==0)
                             eventList7.add(eventList1.get(i));
+                        adapter6 = new EventList2(VolunteerEvents.this , eventList7);
                         listViewVolunteerEvents.setAdapter(adapter6);
                     }
                 }

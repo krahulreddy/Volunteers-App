@@ -188,6 +188,7 @@ public class HostAnEvent extends AppCompatActivity {
                         String eventId = databaseEvents.push().getKey();
 
                         databaseEvents.child(eventId).setValue(eventOneSchema);
+                        databaseEvents.child(eventId).child("type").setValue(type);
 
                         Intent i = new Intent(view.getContext(), MapsActivity.class);
                         i.putExtra("EventId", eventId);

@@ -14,6 +14,7 @@ public class EventOneSchema {
     public int  payment;
     public boolean closeEntries;
     public String type;
+    public float avgRating;
 
   //  public ArrayList<String> ApprovedId = new ArrayList<>();
   //  public ArrayList<String> UnApprovedId = new ArrayList<>();
@@ -43,6 +44,9 @@ public class EventOneSchema {
 
 
 
+    public void setAvgRating(float avgRating) {
+        this.avgRating = avgRating;
+    }
 
     public String getDate() {
         return date;

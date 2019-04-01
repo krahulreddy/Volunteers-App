@@ -47,7 +47,11 @@ public class EventDescription1 extends AppCompatActivity {
         listViewReqVol = findViewById(R.id.listview_reqVol);
         reqVol = new ArrayList<>();
 
+        final Button CloseEntriesButton = findViewById(R.id.Button_closeEntries);
+        final Button OpenEntriesButton = findViewById(R.id.Button_openEntries);
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid() + "/" + str);
+
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -66,6 +70,12 @@ public class EventDescription1 extends AppCompatActivity {
 
                 Text4 = findViewById(R.id.des_description);
                 Text4.setText(dataSnapshot.child("description").getValue().toString());
+
+                if(dataSnapshot.child("closeEntries").getValue().toString().equals("true"))
+                {
+                    CloseEntriesButton.setBackground(getResources().getDrawable(R.drawable.round_button1));
+                }
+                else OpenEntriesButton.setBackground(getResources().getDrawable(R.drawable.round_button1));
             }
 
             @Override
@@ -75,8 +85,7 @@ public class EventDescription1 extends AppCompatActivity {
         });
 
         Button ChatBox = findViewById(R.id.Button_chatbox);
-        final Button CloseEntriesButton = findViewById(R.id.Button_closeEntries);
-        final Button OpenEntriesButton = findViewById(R.id.Button_openEntries);
+
 
         ChatBox.setOnClickListener(new View.OnClickListener() {
             @Override

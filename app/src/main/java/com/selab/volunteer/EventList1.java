@@ -2,11 +2,20 @@ package com.selab.volunteer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -14,6 +23,7 @@ public class EventList1 extends ArrayAdapter<EventOneSchema> {
 
     private Activity context;
     private List<EventOneSchema> eventList;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public EventList1(Activity context   , List<EventOneSchema> eventList) {
 
@@ -38,6 +48,23 @@ public class EventList1 extends ArrayAdapter<EventOneSchema> {
         textView_eventName.setText(eventOneSchema.name);
         textView_eventDate.setText(eventOneSchema.date);
         textView_eventLocation.setText(eventOneSchema.location);
+
+        final RatingBar rBar = listViewItem.findViewById(R.id.avg_rating);
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid() + "/" + List_of_Events.eventMap.get(eventOneSchema));
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String l =  dataSnapshot.child("avgRating").getValue().toString();
+                rBar.setRating(Float.parseFloat(l));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
 
         listViewItem.setOnClickListener(new View.OnClickListener() {
             @Override

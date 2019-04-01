@@ -40,13 +40,15 @@ public class EventList2 extends ArrayAdapter<EventOneSchema> {
         TextView textView_eventName = (TextView) listViewItem.findViewById(R.id.textView_eventName);
         TextView textView_eventDate = (TextView) listViewItem.findViewById(R.id.textView_eventDate);
         TextView textView_eventLocation = (TextView) listViewItem.findViewById(R.id.textView_eventLocation);
-        final RatingBar rBar = listViewItem.findViewById(R.id.avg_rating);
+
 
         final EventOneSchema eventOneSchema = eventList.get(position);
 
         textView_eventName.setText(eventOneSchema.name);
         textView_eventDate.setText(eventOneSchema.date);
         textView_eventLocation.setText(eventOneSchema.location);
+
+        final RatingBar rBar = listViewItem.findViewById(R.id.avg_rating);
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + VolunteerEvents.tempMap.get(VolunteerEvents.eventMap.get(eventOneSchema)) + "/" + VolunteerEvents.eventMap.get(eventOneSchema));
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

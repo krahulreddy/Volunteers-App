@@ -89,9 +89,8 @@ public class EventDescription4 extends AppCompatActivity {
                 ratingReview.UId = mAuth.getUid();
                 ratingReview.Rating = ratingBar.getRating();
                 ratingReview.Review = review.getText().toString().trim();
+
                 databaseReference.child("RandR").push().setValue(ratingReview);
-                LinearLayout linearLayout = findViewById(R.id.rating_layout);
-                RatingReview ratingReview1 = new RatingReview();
                 DatabaseReference reff = databaseReference.child("RandR");
                 final float[] avgRating = {0};
                 reff.addValueEventListener(new ValueEventListener() {
@@ -99,8 +98,9 @@ public class EventDescription4 extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ds: dataSnapshot.getChildren())
                         {
-                            avgRating[0] += (float) ds.child("Rating").getValue();
+                            avgRating[0] += Float.parseFloat(ds.child("Rating").getValue().toString());
                         }
+
                         databaseReference.child("avgRating").setValue(avgRating[0] /dataSnapshot.getChildrenCount()).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {

@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +37,12 @@ public class EventDescription4 extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         Button chatbox = findViewById(R.id.Button_chatbox);
+        final Button rateButton = findViewById(R.id.submit_review);
+        final RatingBar ratingBar = findViewById(R.id.rating);
+        final EditText review = findViewById(R.id.review);
 
         final String str = getIntent().getStringExtra("EventId");
+
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + Approved.tempMap.get(str) + "/" + str);
@@ -73,6 +79,19 @@ public class EventDescription4 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        rateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RatingReview ratingReview = new RatingReview();
+                ratingReview.UId = mAuth.getUid();
+                ratingReview.Rating = ratingBar.getRating();
+                ratingReview.Review = review.getText().toString().trim();
+                databaseReference.child("RandR").push().setValue(ratingReview);
+            }
+        });
+
+
 
     }
 

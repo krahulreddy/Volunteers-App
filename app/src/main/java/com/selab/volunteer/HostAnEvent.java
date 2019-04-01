@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -51,7 +52,6 @@ public class HostAnEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hostanevent);
         Intent incoming = getIntent();
-
         final String date = incoming.getStringExtra("date");
         nextbutton = (Button) findViewById(R.id.NextStep);
         EventName=(EditText)findViewById(R.id.HostAnEventName);

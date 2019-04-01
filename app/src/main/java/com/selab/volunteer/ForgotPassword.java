@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,8 @@ public class ForgotPassword extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+        final ProgressBar progressBar = findViewById(R.id.forgotpassword_bar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         mAuth = FirebaseAuth.getInstance();
         Button forgot =(Button)findViewById(R.id.reset);
@@ -40,23 +43,29 @@ public class ForgotPassword extends AppCompatActivity {
                 Matcher matcher = pattern.matcher(mail);
 
                 if (matcher.matches()) {
+                    progressBar.setVisibility(View.VISIBLE);
                     mAuth.sendPasswordResetEmail(mail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
 
                         public void onComplete(@NonNull Task<Void> task) {
                             TextView print = findViewById(R.id.print);
-                            if(task.isSuccessful())
+                            if(task.isSuccessful()) {
                                 print.setText("A link has been sent to the given email id.");
-                            else
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
+                            else {
                                 print.setText("Error!!\nPlease check the email address");
+                                progressBar.setVisibility(View.INVISIBLE);
+                            }
                         }
                     });
-                    //startActivity(Newpage);
+
                 }
                 else {
                     email.setError("Enter a valid email id!!");
                     flag = 1;
                 }
+                //progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

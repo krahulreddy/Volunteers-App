@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,8 @@ public class SignUp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
+        final ProgressBar progressBar = findViewById(R.id.signup_bar);
+        progressBar.setVisibility(View.INVISIBLE);
         mAuth = FirebaseAuth.getInstance();
         dataBase = FirebaseDatabase.getInstance().getReference().child("Users");
         final Button signup =(Button)findViewById(R.id.signup);
@@ -108,6 +110,7 @@ public class SignUp extends AppCompatActivity {
                 }
 
                 if(flag == 0) {
+                    progressBar.setVisibility(View.VISIBLE);
                     //Toast.makeText(getApplicationContext(), "HI", Toast.LENGTH_LONG).show();
                     mAuth.createUserWithEmailAndPassword(Mail, Pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -159,6 +162,7 @@ public class SignUp extends AppCompatActivity {
                         }
                     });
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
         });
     }

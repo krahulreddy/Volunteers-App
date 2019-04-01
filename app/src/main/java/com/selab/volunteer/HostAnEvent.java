@@ -180,7 +180,7 @@ public class HostAnEvent extends AppCompatActivity {
                     } else {
                         Toast.makeText(getApplicationContext(), "Event information saved!", Toast.LENGTH_LONG).show();
 
-                        final EventOneSchema eventOneSchema = new EventOneSchema(eventname, date, eventlocation, eventdesc, Integer.parseInt(eventpay));
+                        final EventOneSchema eventOneSchema = new EventOneSchema(eventname, date, eventlocation, eventdesc, Integer.parseInt(eventpay),type);
                         eventOneSchema.closeEntries = false;
 
 
@@ -188,7 +188,7 @@ public class HostAnEvent extends AppCompatActivity {
                         String eventId = databaseEvents.push().getKey();
 
                         databaseEvents.child(eventId).setValue(eventOneSchema);
-                        databaseEvents.child(eventId).child("type").setValue(type);
+
 
                         Intent i = new Intent(view.getContext(), MapsActivity.class);
                         i.putExtra("EventId", eventId);

@@ -31,6 +31,8 @@ public class EventList2 extends ArrayAdapter<EventOneSchema> {
     }
 
 
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final LayoutInflater inflater = context.getLayoutInflater();

@@ -274,3 +274,14 @@ class SortbyPayment implements Comparator<EventOneSchema>
         return a.payment - b.payment;
     }
 }
+
+class SortbyDate implements Comparator<EventOneSchema>
+{
+    // Used for sorting in ascending order of
+    // roll name
+    public int compare(EventOneSchema a, EventOneSchema b)
+    {
+        return a.date.compareTo(b.date);
+    }
+}
+

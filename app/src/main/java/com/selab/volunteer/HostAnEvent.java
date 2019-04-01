@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -21,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -28,6 +31,7 @@ public class HostAnEvent extends AppCompatActivity {
 
     FirebaseAuth mAuth;
     DatabaseReference databaseEvents;
+
 
 
     EditText EventName,EventDesc,EventPay;
@@ -55,6 +59,20 @@ public class HostAnEvent extends AppCompatActivity {
         EventPay=(EditText)findViewById(R.id.HostAnEventMoney);
         GoToCalender=(Button)findViewById(R.id.GoToCalender);
         cancelhost=(Button)findViewById(R.id.CancelHost) ;
+
+        Spinner spinner = findViewById(R.id.types);
+        ArrayList<String> typelist = new ArrayList<>();
+        typelist.add("Charity");
+        typelist.add("Sports");
+        typelist.add("Cultural");
+        typelist.add("Others");
+
+        final ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, typelist);
+
+         //Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         //attaching data adapter to spinner
+        spinner.setAdapter(dataAdapter);
 
         EventDate.setText(date);
         HostAnEventTime.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {

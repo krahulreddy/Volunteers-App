@@ -69,6 +69,17 @@
             android:layout_height="wrap_content"
             android:hint="Event name"
             android:inputType="text"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type of the event:"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"/>
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/types">
+        </Spinner>
 
         <TextView
             android:id="@+id/textView6"

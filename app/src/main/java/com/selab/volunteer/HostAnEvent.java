@@ -63,6 +63,7 @@ public class HostAnEvent extends AppCompatActivity {
         cancelhost=(Button)findViewById(R.id.CancelHost) ;
 
         Spinner spinner = findViewById(R.id.types);
+
         ArrayList<String> typelist = new ArrayList<>();
         typelist.add("Charity");
         typelist.add("Sports");
@@ -188,8 +189,7 @@ public class HostAnEvent extends AppCompatActivity {
                         String eventId = databaseEvents.push().getKey();
 
                         databaseEvents.child(eventId).setValue(eventOneSchema);
-
-
+                        databaseEvents.child(eventId).child("avgRating").setValue((float) 0.0);
                         Intent i = new Intent(view.getContext(), MapsActivity.class);
                         i.putExtra("EventId", eventId);
                         startActivity(i);

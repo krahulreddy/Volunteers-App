@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,6 +89,25 @@ public class EventDescription4 extends AppCompatActivity {
                 ratingReview.Rating = ratingBar.getRating();
                 ratingReview.Review = review.getText().toString().trim();
                 databaseReference.child("RandR").push().setValue(ratingReview);
+                LinearLayout linearLayout = findViewById(R.id.rating_layout);
+                RatingReview ratingReview1 = new RatingReview();
+                DatabaseReference reff = databaseReference.child("RandR");
+                reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        float avgRating = 0;
+                        for(DataSnapshot ds: dataSnapshot.getChildren())
+                        {
+                            avgRating += (float) ds.child("Rating").getValue();
+                        }
+                        databaseReference.child("avgRating").setValue(avgRating/dataSnapshot.getChildrenCount());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 

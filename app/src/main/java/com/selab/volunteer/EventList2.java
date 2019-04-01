@@ -2,11 +2,19 @@ package com.selab.volunteer;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -32,12 +40,25 @@ public class EventList2 extends ArrayAdapter<EventOneSchema> {
         TextView textView_eventName = (TextView) listViewItem.findViewById(R.id.textView_eventName);
         TextView textView_eventDate = (TextView) listViewItem.findViewById(R.id.textView_eventDate);
         TextView textView_eventLocation = (TextView) listViewItem.findViewById(R.id.textView_eventLocation);
+        final RatingBar rBar = listViewItem.findViewById(R.id.avg_rating);
 
         final EventOneSchema eventOneSchema = eventList.get(position);
 
         textView_eventName.setText(eventOneSchema.name);
         textView_eventDate.setText(eventOneSchema.date);
         textView_eventLocation.setText(eventOneSchema.location);
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Events/" + VolunteerEvents.tempMap.get(VolunteerEvents.eventMap.get(eventOneSchema)) + "/" + VolunteerEvents.eventMap.get(eventOneSchema));
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                rBar.setRating((float) dataSnapshot.child("avgRating").getValue());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         listViewItem.setOnClickListener(new View.OnClickListener() {
             @Override

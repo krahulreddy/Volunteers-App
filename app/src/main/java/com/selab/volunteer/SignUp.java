@@ -59,12 +59,12 @@ public class SignUp extends AppCompatActivity {
                 final String Pass = pass.getText().toString();
                 final String Cpy_Pass = pass_cpy.getText().toString();
 
-                if (TextUtils.isEmpty(Name))
+                if (TextUtils.isEmpty(Name.trim()))
                 {
                     name.setError("Enter name!!");
                     flag = 1;
                 }
-                if (TextUtils.isEmpty(Mail))
+                if (TextUtils.isEmpty(Mail.trim()))
                 {
                     mail.setError("Enter email!!");
                     flag = 1;

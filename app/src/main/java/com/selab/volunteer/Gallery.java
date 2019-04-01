@@ -60,7 +60,7 @@ public class Gallery extends AppCompatActivity {
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(TextUtils.isEmpty(name.getText())) {
+                if(TextUtils.isEmpty(name.getText().toString().trim())) {
                     Toast.makeText(getApplicationContext(), "Enter Event Name!", Toast.LENGTH_SHORT).show();
                     name.setError("Please fill!");
 

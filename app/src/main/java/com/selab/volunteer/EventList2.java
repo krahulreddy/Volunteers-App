@@ -51,7 +51,8 @@ public class EventList2 extends ArrayAdapter<EventOneSchema> {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                rBar.setRating((float) dataSnapshot.child("avgRating").getValue());
+                String l =  dataSnapshot.child("avgRating").getValue().toString();
+                rBar.setRating(Float.parseFloat(l));
             }
 
             @Override

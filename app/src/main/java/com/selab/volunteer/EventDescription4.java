@@ -12,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -92,15 +93,20 @@ public class EventDescription4 extends AppCompatActivity {
                 LinearLayout linearLayout = findViewById(R.id.rating_layout);
                 RatingReview ratingReview1 = new RatingReview();
                 DatabaseReference reff = databaseReference.child("RandR");
-                reff.addListenerForSingleValueEvent(new ValueEventListener() {
+                final float[] avgRating = {0};
+                reff.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        float avgRating = 0;
                         for(DataSnapshot ds: dataSnapshot.getChildren())
                         {
-                            avgRating += (float) ds.child("Rating").getValue();
+                            avgRating[0] += (float) ds.child("Rating").getValue();
                         }
-                        databaseReference.child("avgRating").setValue(avgRating/dataSnapshot.getChildrenCount());
+                        databaseReference.child("avgRating").setValue(avgRating[0] /dataSnapshot.getChildrenCount()).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
+                            }
+                        });
                     }
 
                     @Override

@@ -60,7 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(view.getContext(), MainActivity.class);
+                Intent i = new Intent(view.getContext(), HostAnEvent.class);
                 startActivity(i);
             }
         });
@@ -85,7 +85,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            if(addressList==null)
+            if(addressList.isEmpty()==true)
             {
                 locationSearch.requestFocus();
                 locationSearch.setError("Invalid location");

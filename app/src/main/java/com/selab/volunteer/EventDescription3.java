@@ -30,7 +30,7 @@ public class EventDescription3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.eventdescription2);
+        setContentView(R.layout.eventdescription3);
 
         mAuth = FirebaseAuth.getInstance();
 

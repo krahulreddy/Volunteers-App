@@ -133,6 +133,8 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
 
                 for( DataSnapshot hostsnapshot: dataSnapshot.getChildren() )
                 {
+                        if(hostsnapshot.getKey().equals(mAuth.getUid()))
+                            continue;
 
                         for( DataSnapshot eventsnapshot: hostsnapshot.getChildren())
                         {

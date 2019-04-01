@@ -7,7 +7,6 @@ public class Users {
     String url;
     int wallet;
 
-
     public Users() {
     }
 

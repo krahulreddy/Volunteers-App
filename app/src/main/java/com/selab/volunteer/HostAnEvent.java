@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +43,7 @@ public class HostAnEvent extends AppCompatActivity {
     private Button cancelhost=null;
     int EventTimeHours,EventTimeMinutes;
     EventOneSchema eventOneSchema,formax;
-
+    String type;
     long maxid = 2;
 
     @Override
@@ -50,6 +51,7 @@ public class HostAnEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hostanevent);
         Intent incoming = getIntent();
+
         final String date = incoming.getStringExtra("date");
         nextbutton = (Button) findViewById(R.id.NextStep);
         EventName=(EditText)findViewById(R.id.HostAnEventName);
@@ -66,6 +68,32 @@ public class HostAnEvent extends AppCompatActivity {
         typelist.add("Sports");
         typelist.add("Cultural");
         typelist.add("Others");
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItemText = (String) parent.getItemAtPosition(position);
+                // Notify the selected item text
+
+                if(selectedItemText.compareTo("Charity")==0){
+                    type="Charity";
+                }
+                if(selectedItemText.compareTo("Sports")==0){
+                    type="Sports";
+                }
+                if(selectedItemText.compareTo("Cultural")==0){
+                    type="Cultural";
+                }
+                if(selectedItemText.compareTo("Others")==0){
+                    type="Others";
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         final ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, typelist);
 

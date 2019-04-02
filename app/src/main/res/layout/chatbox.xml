@@ -13,8 +13,8 @@
         android:id="@+id/tw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="EVENT NAME"
-        android:textSize="30dp"
+        android:text="CHATBOX"
+        android:textSize="30sp"
         android:layout_marginTop="20dp"
         android:gravity="center"/>
     <ListView

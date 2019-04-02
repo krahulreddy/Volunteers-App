@@ -53,6 +53,10 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_volunteerevents);
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Events");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Spinner spinner = findViewById(R.id.sort);
         Spinner spinner1 = findViewById(R.id.filter);
         // Spinner click listener

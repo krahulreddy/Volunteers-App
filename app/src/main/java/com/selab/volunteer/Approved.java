@@ -39,8 +39,10 @@ public class Approved extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.approved);
 
-        Toolbar toolbar= findViewById(R.id.toolbar);
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setTitle("Approved Events");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         final Button button_a = (Button) findViewById(R.id.button_approved);
         final Button button_w = (Button) findViewById(R.id.button_waitlisted);

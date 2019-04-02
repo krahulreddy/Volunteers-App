@@ -3,20 +3,22 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fitsSystemWindows="true"
-
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MyEvents"
+    android:fitsSystemWindows="true">
+
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/blue700"
+        android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/AlertDialog.AppCompat.Light"
-        />
+        app:popupTheme="@style/AlertDialog.AppCompat.Light" />
 
     <Space xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="30sp"

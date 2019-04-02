@@ -30,8 +30,10 @@ public class Report extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report);
-
-
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Report");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final EditText Name=(EditText)findViewById(R.id.reportName);
         final EditText event=(EditText)findViewById(R.id.reportevent);
         final EditText reason=(EditText)findViewById(R.id.reportreason);

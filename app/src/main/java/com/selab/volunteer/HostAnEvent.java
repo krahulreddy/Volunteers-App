@@ -51,6 +51,13 @@ public class HostAnEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hostanevent);
+
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Host An Event");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         Intent incoming = getIntent();
         final String date = incoming.getStringExtra("date");
         nextbutton = (Button) findViewById(R.id.NextStep);

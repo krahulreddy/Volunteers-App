@@ -9,17 +9,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Wallet"
+    android:fitsSystemWindows="true"
     >
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/blue700"
+        android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:popupTheme="@style/AlertDialog.AppCompat.Light"
-        android:layout_marginBottom="50dp"/>
-
+        app:popupTheme="@style/AlertDialog.AppCompat.Light" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

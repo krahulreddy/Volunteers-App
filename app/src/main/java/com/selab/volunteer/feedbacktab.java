@@ -25,7 +25,10 @@ public class feedbacktab extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedbacktab);
-
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Feedback");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final EditText Name=(EditText)findViewById(R.id.feedbackname);
         final EditText email=(EditText)findViewById(R.id.feedbackemail);
         final EditText subject=(EditText)findViewById(R.id.feedbacksubject);

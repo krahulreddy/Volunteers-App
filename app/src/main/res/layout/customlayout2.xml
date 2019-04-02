@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <Button
-        android:id="@+id/Button_rejectReq"
-        android:layout_width="99dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_userId"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="221dp"
-        android:layout_marginLeft="221dp"
-        android:layout_marginTop="14dp"
-        android:text="Reject"
-        android:textSize="15sp" />
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/textView_userId"
         android:layout_width="wrap_content"
-        android:layout_height="31dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="24dp"
@@ -33,20 +18,36 @@
         android:layout_marginRight="28dp"
         android:text="TextView"
         android:textSize="20sp"
-        android:textColor="@android:color/black"/>
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="15dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
+    <Button
+        android:id="@+id/Button_rejectReq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/round_button"
+        android:backgroundTint="#ff0000"
+        android:text="Reject"
+        android:textColor="#ffffff"
+        android:layout_marginLeft="40dp"
+        android:textSize="15sp" />
 
     <Button
         android:id="@+id/Button_acceptReq"
-        android:layout_width="99dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView_userId"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="57dp"
-        android:layout_marginLeft="57dp"
-        android:layout_marginTop="16dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/round_button"
         android:text="Accept"
+        android:backgroundTint="#32cd32"
+        android:textColor="#ffffff"
+        android:layout_marginRight="40dp"
         android:textSize="15sp" />
+    </RelativeLayout>
 
-</RelativeLayout>
+</LinearLayout>

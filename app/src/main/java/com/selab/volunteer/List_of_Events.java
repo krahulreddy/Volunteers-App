@@ -1,8 +1,13 @@
 package com.selab.volunteer;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +46,11 @@ public class List_of_Events extends AppCompatActivity {
 
         listViewHostedEvents = (ListView) findViewById(R.id.listview_hostedevents);
 
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        setTitle("Hosted Events");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mAuth = FirebaseAuth.getInstance();
         hostedEvents = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid());
@@ -79,6 +88,19 @@ public class List_of_Events extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

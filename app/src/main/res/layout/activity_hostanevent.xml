@@ -4,7 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    tools:context=".Approved"
+    android:fitsSystemWindows="true">
+
+
+
     <LinearLayout
         android:id="@+id/activityMain"
         android:layout_width="match_parent"
@@ -13,20 +18,22 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical">
-        <TextView
-            android:id="@+id/HostAnEventTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Event details"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textAllCaps="true"
-            android:textSize="30sp"
-            android:background="@color/colorPrimary"
-            app:fontFamily="sans-serif-black" />
 
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            android:elevation="4dp"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/AlertDialog.AppCompat.Light" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            />
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"

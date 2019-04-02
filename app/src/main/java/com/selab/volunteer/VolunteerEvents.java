@@ -283,7 +283,7 @@ class SortbyDate implements Comparator<EventOneSchema>
     // roll name
     public int compare(EventOneSchema a, EventOneSchema b)
     {
-        return a.date.compareTo(b.date);
+        return a.date. compareTo(b.date);
     }
 }
 

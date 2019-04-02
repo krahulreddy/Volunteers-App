@@ -14,7 +14,7 @@
     <Space
         android:id="@+id/spacer"
         android:layout_width="wrap_content"
-        android:layout_height="20dp"
+        
         android:layout_below="@+id/toolbar"
         android:background="@color/blue700"/>
     <SearchView

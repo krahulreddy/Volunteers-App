@@ -23,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -285,9 +287,18 @@ class SortbyDate implements Comparator<EventOneSchema>
     // roll name
     public int compare(EventOneSchema a, EventOneSchema b)
     {
-        long d1 = Date.parse(a.date);
-        long d2 = Date.parse(b.date);
-        return (int) (d1 - d2);
+        java.util.Date d1 = null, d2 = null;
+        try {
+            d1 = new SimpleDateFormat("dd/mm/yyyy").parse(a.date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            d2 = new SimpleDateFormat("dd/mm/yyyy").parse(b.date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return (int) (d1.getTime() - d2.getTime());
     }
 }
 

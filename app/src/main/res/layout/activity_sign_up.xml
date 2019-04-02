@@ -7,9 +7,16 @@
     tools:context=".Login"
     android:background="@color/colorAccentDark"
     android:layout_margin="10dp"
-
-    >
-
+    android:fitsSystemWindows="true">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/AlertDialog.AppCompat.Light"
+        tools:ignore="MissingConstraints" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +28,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -31,6 +39,7 @@
                 tools:ignore="MissingConstraints"></Space>
 
             <TextView
+                android:paddingTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -147,26 +156,25 @@
                 android:ems="10"
                 android:inputType="textPassword" />
     -->
-            <android.support.v7.widget.ButtonBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+
+
+
+            <Button
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/round_button"
+            android:text="SUBMIT" />
 
                 <ProgressBar
+                    android:layout_gravity="center"
                     android:id="@+id/signup_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
 
-                <Button
-                    android:id="@+id/signup"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="100dp"
-                    android:background="@drawable/round_button"
-                    android:text="SUBMIT" />
-            </android.support.v7.widget.ButtonBarLayout>
+
+
         </LinearLayout>
     </ScrollView>
 

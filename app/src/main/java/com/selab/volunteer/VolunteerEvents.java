@@ -35,10 +35,8 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
     List<EventOneSchema> eventList1 = new ArrayList<>();
     List<EventOneSchema> eventList2 = new ArrayList<>();
     List<EventOneSchema> eventList3 = new ArrayList<>();
-    List<EventOneSchema> eventList4 = new ArrayList<>();
-    List<EventOneSchema> eventList5 = new ArrayList<>();
-    List<EventOneSchema> eventList6 = new ArrayList<>();
-    List<EventOneSchema> eventList7 = new ArrayList<>();
+
+    List<EventOneSchema> eventList8 = new ArrayList<>();
     FirebaseAuth mAuth;
     SearchView editsearch ;
     EventList2 adapter5;
@@ -59,7 +57,7 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
         Spinner spinner1 = findViewById(R.id.filter);
         // Spinner click listener
 
-        editsearch = (SearchView) findViewById(R.id.search);
+        editsearch =  findViewById(R.id.search);
         editsearch.setOnQueryTextListener(this);
         // Spinner Drop down elements
         ArrayList<String> categories = new ArrayList<>();
@@ -67,8 +65,10 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
         categories.add("Name");
         categories.add("Money");
         categories.add("Location");
+        categories.add("Date");
 
         ArrayList<String> genres = new ArrayList<>();
+        genres.add("Filter");
         genres.add("Charity");
         genres.add("Sports");
         genres.add("Cultural");
@@ -97,7 +97,7 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 // Notify the selected item text
-                Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT).show();
                 if(selectedItemText.compareTo("Name")==0){
                     EventList2 adapter1;
                     adapter1 = new EventList2(VolunteerEvents.this , eventList1);
@@ -111,6 +111,10 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
                     EventList2 adapter3 = new EventList2(VolunteerEvents.this , eventList2);
                     listViewVolunteerEvents.setAdapter(adapter3);
                 }
+                if(selectedItemText.compareTo("Date")==0){
+                    EventList2 adapter3 = new EventList2(VolunteerEvents.this , eventList8);
+                    listViewVolunteerEvents.setAdapter(adapter3);
+                }
 
             }
 
@@ -122,53 +126,50 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String selectedItemText = (String) parent.getItemAtPosition(position);
+                String selectedItemText1 = (String) parent.getItemAtPosition(position);
                 // Notify the selected item text
-                Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT).show();
-                if(selectedItemText.compareTo("Sports")==0){
+                //Toast.makeText(getApplicationContext(), "Selected : " + selectedItemText, Toast.LENGTH_SHORT).show();
+                if (selectedItemText1.compareTo("Sports") == 0) {
+                    List<EventOneSchema> eventList4 = new ArrayList<>();
+                    for (int i = 0; i < eventList1.size(); i++) {
+                        if (eventList1.get(i).type.equals("Sports"))
+                        {eventList4.add(eventList1.get(i));}
+                    }
+                    adapter6 = new EventList2(VolunteerEvents.this, eventList4);
+                    listViewVolunteerEvents.setAdapter(adapter6);
+                }
+                if (selectedItemText1.compareTo("Cultural") == 0) {
+                    List<EventOneSchema> eventList5 = new ArrayList<>();
+                    for (int i = 0; i < eventList1.size(); i++) {
 
-                    for(int i=0;i<eventList1.size();i++)
-                    {
-                        eventList4.clear();
-                        if(eventList1.get(i).type.compareTo("Sports")==0)
-                            eventList4.add(eventList1.get(i));
-                        adapter6 = new EventList2(VolunteerEvents.this , eventList4);
-                        listViewVolunteerEvents.setAdapter(adapter6);
+                        if (eventList1.get(i).type.equals("Cultural"))
+                        {eventList5.add(eventList1.get(i));}
                     }
+                    adapter6 = new EventList2(VolunteerEvents.this, eventList5);
+                    listViewVolunteerEvents.setAdapter(adapter6);
                 }
+                if (selectedItemText1.equals("Others")) {
+                    List<EventOneSchema> eventList6 = new ArrayList<>();
+                    for (int i = 0; i < eventList2.size(); i++) {
+                        if (eventList2.get(i).type.equals("Others"))
+                        {   eventList6.add(eventList2.get(i));}
+                    }
+                    adapter6 = new EventList2(VolunteerEvents.this, eventList6);
+                    listViewVolunteerEvents.setAdapter(adapter6);
+                }
+                if (selectedItemText1.compareTo("Charity") == 0) {
+                    List<EventOneSchema> eventList7 = new ArrayList<>();
+                    for (int i = 0; i < eventList1.size(); i++) {
 
-                if(selectedItemText.compareTo("Cultural")==0){
-                    for(int i=0;i<eventList1.size();i++)
-                    {
-                        eventList5.clear();
-                        if(eventList1.get(i).type.compareTo("Cultural")==0)
-                            eventList5.add(eventList1.get(i));
-                        adapter6 = new EventList2(VolunteerEvents.this , eventList5);
-                        listViewVolunteerEvents.setAdapter(adapter6);
-                    }
-                }
-                if(selectedItemText.compareTo("Others")==0){
-                    for(int i=0;i<eventList1.size();i++)
-                    {
-                        eventList6.clear();
-                        if(eventList1.get(i).type.compareTo("Others")==0)
-                            eventList6.add(eventList1.get(i));
-                        adapter6 = new EventList2(VolunteerEvents.this , eventList6);
-                        listViewVolunteerEvents.setAdapter(adapter6);
-                    }
-                }
-                if(selectedItemText.compareTo("Charity")==0){
-                    for(int i=0;i<eventList1.size();i++)
-                    {
-                        eventList7.clear();
-                        if(eventList1.get(i).type.compareTo("Charity")==0)
+                        if (eventList1.get(i).type.equals("Charity"))
                             eventList7.add(eventList1.get(i));
-                        adapter6 = new EventList2(VolunteerEvents.this , eventList7);
-                        listViewVolunteerEvents.setAdapter(adapter6);
                     }
+                    adapter6 = new EventList2(VolunteerEvents.this, eventList7);
+                    listViewVolunteerEvents.setAdapter(adapter6);
                 }
-
             }
+
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -212,6 +213,7 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
                 Collections.sort(eventList1,new Sortbyname());
                 Collections.sort(eventList2,new Sortbylocation());
                 Collections.sort(eventList3,new SortbyPayment());
+                Collections.sort(eventList8,new SortbyDate());
                 EventList2 adapter = new EventList2(VolunteerEvents.this , eventList);
                 listViewVolunteerEvents.setAdapter(adapter);
 
@@ -271,7 +273,7 @@ class SortbyPayment implements Comparator<EventOneSchema>
     // roll name
     public int compare(EventOneSchema a, EventOneSchema b)
     {
-        return a.payment - b.payment;
+        return b.payment - a.payment;
     }
 }
 

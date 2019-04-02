@@ -46,7 +46,7 @@ public class EventOneSchema {
 
     public void setAvgRating(float avgRating) {
         this.avgRating = avgRating;
-    }
+}
 
     public String getDate() {
         return date;

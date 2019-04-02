@@ -56,6 +56,10 @@ public class Gallery extends AppCompatActivity {
         upload = findViewById(R.id.uploadPhoto);
         final EditText name = findViewById(R.id.event_name);
 
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Event Gallery");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override

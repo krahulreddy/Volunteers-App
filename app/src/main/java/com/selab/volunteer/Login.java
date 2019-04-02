@@ -20,7 +20,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.GoogleAuthProvider;
 
 import com.google.android.gms.tasks.OnCompleteListener;

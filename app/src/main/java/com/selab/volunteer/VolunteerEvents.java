@@ -211,6 +211,7 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
                 eventList1 = new ArrayList<>((eventMap.keySet()));
                 eventList2 = new ArrayList<>((eventMap.keySet()));
                 eventList3 = new ArrayList<>((eventMap.keySet()));
+                eventList8 = new ArrayList<>((eventMap.keySet()));
                 Collections.sort(eventList1,new Sortbyname());
                 Collections.sort(eventList2,new Sortbylocation());
                 Collections.sort(eventList3,new SortbyPayment());

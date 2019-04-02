@@ -28,6 +28,11 @@ public class ForgotPassword extends AppCompatActivity {
         final ProgressBar progressBar = findViewById(R.id.forgotpassword_bar);
         progressBar.setVisibility(View.INVISIBLE);
 
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Forgot Password");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mAuth = FirebaseAuth.getInstance();
         Button forgot =(Button)findViewById(R.id.reset);
         forgot.setOnClickListener(new View.OnClickListener() {

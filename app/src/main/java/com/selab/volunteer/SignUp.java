@@ -41,6 +41,11 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         dataBase = FirebaseDatabase.getInstance().getReference().child("Users");
         final Button signup =(Button)findViewById(R.id.signup);
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Sign Up");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

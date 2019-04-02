@@ -52,6 +52,11 @@ public class Chatbox extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chatbox);
 
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        setTitle("Chat Box");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("messages").child(getIntent().getStringExtra("EventId"));
         userId = mAuth.getUid();

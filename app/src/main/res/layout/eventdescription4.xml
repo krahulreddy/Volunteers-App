@@ -13,7 +13,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_height="20sp"
         />
     <TextView
         android:id="@+id/textView0"
@@ -21,12 +21,23 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="30sp"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         android:textAlignment="center"/>
     <Space
         android:layout_width="match_parent"
-        android:layout_height="30sp"
+        android:layout_height="20sp"
         />
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -115,12 +126,19 @@
     <Space
         android:layout_width="match_parent"
         android:layout_height="100dp" />
+</LinearLayout>
+    </android.support.v7.widget.CardView>
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CHATBOX"
+        android:text="CHAT"
         android:layout_gravity="center_horizontal"
-        android:id="@+id/Button_chatbox"/>
+        android:id="@+id/Button_chatbox"
+        android:backgroundTint="@color/blue800"
+        android:background="@drawable/round_button"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#ffffff"/>
 
     <LinearLayout
         android:id="@+id/rating_layout"
@@ -133,6 +151,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Rate this Event"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textAllCaps="true"
         android:layout_gravity="center"/>
 
     <android.support.v7.widget.AppCompatRatingBar
@@ -152,6 +174,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:backgroundTint="@color/blue800"
+        android:background="@drawable/round_button"
+        android:textColor="#ffffff"
+        android:padding="20dp"
         android:text="Submit Review"/>
     </LinearLayout>
 

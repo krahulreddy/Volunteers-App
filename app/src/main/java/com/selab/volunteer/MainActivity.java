@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nav_header);
+        setContentView(R.layout.activity_main);
         mAuth = FirebaseAuth.getInstance();
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(mAuth.getUid());
@@ -59,9 +59,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 String imageurl = dataSnapshot.child("url").getValue().toString();
                 if(imageurl!=" ")
                     Picasso.with(MainActivity.this).load(imageurl).fit().centerCrop().into(pro);
-
-
-
             }
 
             @Override
@@ -69,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-        setContentView(R.layout.activity_main);
+
 
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -134,8 +131,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_share: {
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
-                String shareBody = "Your body here";
-                String sharesub = "Your subject here";
+                String shareBody = "Hey!!!\nDownload the new cool app for easily organising events!!!\nLink to Download the file \n"+"https://drive.google.com/open?id=1wRGNFWaoEKEkKqHPwm1wWgTuDlfhMoOP";
+                String sharesub = "Download The App";
                 share.putExtra(Intent.EXTRA_SUBJECT, sharesub);
                 share.putExtra(Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(share, "Share Using"));

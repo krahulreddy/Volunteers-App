@@ -65,6 +65,7 @@
             android:layout_alignParentRight="true"
             android:id="@+id/FinalStep"
             android:padding="25sp"
+            android:background="@drawable/round_button"
             android:text="Host"/>
         <Button
             android:layout_width="wrap_content"
@@ -72,6 +73,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:padding="25sp"
+            android:background="@drawable/round_button"
             android:id="@+id/GoBack"
             android:text="Go back"
             />

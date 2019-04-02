@@ -24,7 +24,6 @@ public class EventList2 extends ArrayAdapter<EventOneSchema> {
     private List<EventOneSchema> eventList;
 
     public EventList2(Activity context   , List<EventOneSchema> eventList) {
-
         super(context, R.layout.customlayout, eventList);
         this.context = context;
         this.eventList = eventList;

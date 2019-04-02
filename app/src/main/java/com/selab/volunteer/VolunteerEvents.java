@@ -22,6 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -214,6 +217,7 @@ public class VolunteerEvents extends AppCompatActivity implements SearchView.OnQ
                 eventList1 = new ArrayList<>((eventMap.keySet()));
                 eventList2 = new ArrayList<>((eventMap.keySet()));
                 eventList3 = new ArrayList<>((eventMap.keySet()));
+                eventList8 = new ArrayList<>((eventMap.keySet()));
                 Collections.sort(eventList1,new Sortbyname());
                 Collections.sort(eventList2,new Sortbylocation());
                 Collections.sort(eventList3,new SortbyPayment());
@@ -287,7 +291,18 @@ class SortbyDate implements Comparator<EventOneSchema>
     // roll name
     public int compare(EventOneSchema a, EventOneSchema b)
     {
-        return a.date.compareTo(b.date);
+        java.util.Date d1 = null, d2 = null;
+        try {
+            d1 = new SimpleDateFormat("dd/mm/yyyy").parse(a.date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            d2 = new SimpleDateFormat("dd/mm/yyyy").parse(b.date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return (int) (d1.getTime() - d2.getTime());
     }
 }
 

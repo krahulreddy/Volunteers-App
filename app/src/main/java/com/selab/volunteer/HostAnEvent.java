@@ -190,6 +190,7 @@ public class HostAnEvent extends AppCompatActivity {
 
                         final EventOneSchema eventOneSchema = new EventOneSchema(eventname, date, eventlocation, eventdesc, Integer.parseInt(eventpay),type);
                         eventOneSchema.closeEntries = false;
+                        eventOneSchema.avgRating=(float)0.0;
 
 
                         databaseEvents = FirebaseDatabase.getInstance().getReference().child("Events/" + mAuth.getUid());

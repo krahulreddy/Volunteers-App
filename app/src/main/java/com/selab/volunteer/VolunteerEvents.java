@@ -22,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -283,7 +284,9 @@ class SortbyDate implements Comparator<EventOneSchema>
     // roll name
     public int compare(EventOneSchema a, EventOneSchema b)
     {
-        return a.date.compareTo(b.date);
+        long d1 = Date.parse(a.date);
+        long d2 = Date.parse(b.date);
+        return (int) (d1 - d2);
     }
 }
 
